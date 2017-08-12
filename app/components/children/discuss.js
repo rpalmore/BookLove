@@ -46,16 +46,16 @@ var discuss = React.createClass({
       last_name: data.last_name,
       email: data.email,
       goodreads_url: data.goodreads_url,
-      chapter:data.chapter,
-      current_book:data.current_book
+      chapter: data.chapter,
+      current_book: data.current_book
       });
     }.bind(this));
 
     axios.get("/comment").then(function(response){
       var comments=response.data.map((comment)=>{
-              return {comment:comment.comment,book:comment.book,chapter:comment.chapter,sender:comment.sender,image:comment.image}
+              return {comment: comment.comment, book: comment.book, chapter: comment.chapter,sender:comment.sender,image:comment.image}
             });
-      this.setState({comments:comments});
+      this.setState({comments: comments});
   }.bind(this));
   },
 
@@ -65,16 +65,13 @@ var discuss = React.createClass({
     // Capture any change in the input fields
     var info={};
     info[event.target.id]=event.target.value;
-    // axios.post("comment",info).then(function(req,res){
-    //   console.log("new comment inserted");
-    // })
     this.setState(info);
   },
 
   handleSubmit: function(event) {
     event.preventDefault();
     console.log("CLICKED");
-    helpers.postNewComment(this.state.chapter,this.state.email,this.state.newcomment,this.state.current_book)
+    helpers.postNewComment(this.state.chapter, this.state.email, this.state.newcomment, this.state.current_book)
   },
 
 	render: function() {

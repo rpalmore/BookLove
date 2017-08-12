@@ -52,7 +52,7 @@ var register = React.createClass({
 					<div className="row">
 						<div className="input-field col s6">
 							<input id="email" type="email" className="validate" />
-								<label>Email:</label>
+								<label>Email</label>
 						</div>
 						<div className="input-field col s6">
 							<input id="email_confirm" type="email" value={this.state.email_confirm} onChange={this.handleChange} className="validate" />

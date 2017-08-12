@@ -15,11 +15,11 @@ var helper = {
   },
 
   postNewMember: function(first_name, last_name, email, password, phone, goodreads_url, favorite_genre, favorite_book) {
-    var newMember = { first_name: first_name, last_name: last_name, email: email, password: password, phone: phone, goodreads_url: goodreads_url, favorite_genre: favorite_genre, favorite_book: favorite_book};
+    var newPhone = phone.replace(/-/g, "");
+    var newMember = { first_name: first_name, last_name: last_name, email: email, password: password, phone: newPhone, goodreads_url: goodreads_url, favorite_genre: favorite_genre, favorite_book: favorite_book};
     return axios.post("/api/new_member", newMember)
       .then(function(response) {
-        console.log("print out response")
-        console.log(response);
+        console.log("print out response", response)
         window.location.href="/login"
       });
   },
@@ -34,7 +34,7 @@ var helper = {
   },
 
   postNewComment: function(chapter, email, newcomment, current_book){
-    var setComment={chapter:chapter, email:email, comment:newcomment,BookId:current_book};
+    var setComment={chapter: chapter, email: email, comment: newcomment, BookId: current_book};
     return axios.post("/api/comment", setComment).then(function(response){
       console.log("Comment ", response);
       window.location.href="/discuss"
@@ -54,7 +54,7 @@ var helper = {
     var bookWinner = { book: book};
     return axios.post("/api/book_winner", bookWinner)
     .then(function(response) {
-      var currentbook={id:response.data.id}
+      var currentbook={id: response.data.id}
       return currentbook;
     }).then(function(data){
       return axios.post("/api/updateCurrentbook",data).then(function(response){

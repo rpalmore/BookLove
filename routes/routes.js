@@ -35,34 +35,34 @@ var smtpTransport = nodemailer.createTransport({
  
 module.exports = function(app) {
 
-      app.post("/api/new_member", function(req, res) {
-        var hashedPassword;
-        var salt = bcrypt.genSaltSync(10);
-        hashedPassword = bcrypt.hashSync(req.body.password, salt);
-        db.Member.findOne({
-            where:{
-                email:req.body.email
-            }
-        }).then(function(data){
-            console.log(data);
-            if(data){
-                var member_id = data.dataValues.id;
-                db.Member.update({
-                    phone: req.body.phone,
-                    password: hashedPassword,
-                    goodreads_url: req.body.goodreads_url,
-                    favorite_genre: req.body.favorite_genre,
-                    favorite_book: req.body.favorite_book
-                }, {
-                    where: {
-                        id: member_id
-                    }
-                }).then(function(data) {
-                    res.json(data);
-                  });
-            };
-        });
-    });
+  app.post("/api/new_member", function(req, res) {
+    var hashedPassword;
+    var salt = bcrypt.genSaltSync(10);
+    hashedPassword = bcrypt.hashSync(req.body.password, salt);
+      db.Member.findOne({
+        where:{
+          email:req.body.email
+        }
+      }).then(function(data){
+        console.log(data);
+          if(data){
+            var member_id = data.dataValues.id;
+              db.Member.update({
+                phone: req.body.phone,
+                password: hashedPassword,
+                goodreads_url: req.body.goodreads_url,
+                favorite_genre: req.body.favorite_genre,
+                favorite_book: req.body.favorite_book
+              }, {
+                where: {
+                  id: member_id
+                  }
+              }).then(function(data) {
+                 res.json(data);
+          });
+        };
+      });
+  });
 
 
   // INITIALIZE PASSPORT STRATEGY
@@ -358,14 +358,12 @@ module.exports = function(app) {
     });
   });  
 
-
   // Send whole team a text message when a user finishes book.
   app.get("/phone",
     require('connect-ensure-login').ensureLoggedIn('/login'),
     function(req, res){
     var email = req.user.email;
     var user = req.user.first_name;
-    // var phone = req.user.phone;
       db.Book.findOne({
         attributes: ['title'],
           where: {
@@ -387,7 +385,6 @@ module.exports = function(app) {
         for (i = 0; i < phoneNumbers.length; i++) {
           var numbers = [phoneNumbers[i].dataValues.phone];
           // Calling Nexmo for SMS
-          // Need to handle throttling error in future build
           const Nexmo = require('nexmo');
           const nexmo = new Nexmo({
             apiKey: keys.apiKey,
@@ -409,65 +406,5 @@ module.exports = function(app) {
    });
   });
 });
-
-//   // Send whole team a text message when a user finishes book.
-//   app.get("/phone",
-//     require('connect-ensure-login').ensureLoggedIn('/login'),
-//     function(req, res){
-//     var email = req.user.email;
-//     var user = req.user.first_name;
-//     // var phone = req.user.phone;
-//       db.Book.findOne({
-//         attributes: ['title'],
-//           where: {
-//             id: req.user.current_book
-//         }
-//       }).then(function(data) {
-//         var book = data.dataValues.title;
-//         db.Member.findAll({
-//           attributes: ['phone']
-//       }).then(function(data){
-//         console.log("LBLSLSKSKSKSL");
-//         console.log()
-//         db.Member.update({
-//           current_book: 0,
-//           chapter: 0
-//         }, {
-//           where: {
-//             id: req.user.id
-//           }
-//         }).then(function(data) {
-//         // Calling Nexmo for SMS
-//         // Need to handle throttling error in future build
-//         const Nexmo = require('nexmo');
-//         const nexmo = new Nexmo({
-//           apiKey: keys.apiKey,
-//           apiSecret: keys.apiSecret
-//       });
-
-//       nexmo.message.sendSms(
-//           12013517019, '1'+ phone, user +' finished ' + book,
-//           (err, responseData) => {
-//         if (err) {
-//           console.log(err);
-//         } else {
-//           console.dir(responseData);
-//         }
-//       });
-
-//       nexmo.message.sendSms(
-//           12013517019, '13122863273', user +' finished ' + book,
-//           (err, responseData) => {
-//       if (err) {
-//         console.log(err);
-//       } else {
-//         console.dir(responseData);
-//       }
-//     });
-//         res.json(data);
-//     });
-//    });
-//   });
-// });
 
 };
