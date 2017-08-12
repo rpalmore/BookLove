@@ -2,23 +2,24 @@ var React = require("react");
 var axios = require("axios");
 var Link = require("react-router").Link;
 var helpers = require("../utils/helpers");
+
 import { Image, List, Card, Container, Divider, Feed, Progress, Button, Header, Icon, Modal } from 'semantic-ui-react';
+
 const divStyle = {
   padding: 20,
   backgroundColor: '#80cbc4',
-  // backgroundColor: '#b2dfdb',
 };
 
-const text={
-  padding:10,
+const text = {
+  padding: 10,
 
 };
 
-const commentDiv={
-  margin:15
+const commentDiv = {
+  margin: 15
 }
 
-var listComment=[];
+var listComment = [];
 
 var discuss = React.createClass({
 

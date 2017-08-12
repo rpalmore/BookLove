@@ -19,15 +19,14 @@ var browserHistory = router.browserHistory;
 
 // Reference the high-level components
 var Main = require("../components/Main");
-var login=require("../components/children/login");
-var register=require("../components/children/register");
+var login = require("../components/children/login");
+var register = require("../components/children/register");
 var vote = require("../components/children/vote");
-var background=require("../components/children/background");
-var profile=require("../components/children/profile");
-var discuss=require("../components/children/discuss");
-var chaptermodal=require("../components/children/chaptermodal")
-var passwordmodal=require("../components/children/passwordmodal")
-	
+var background = require("../components/children/background");
+var profile = require("../components/children/profile");
+var discuss = require("../components/children/discuss");
+var chaptermodal = require("../components/children/chaptermodal");
+var passwordmodal = require("../components/children/passwordmodal");	
 
 // Export the Routes
 module.exports = (

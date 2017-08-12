@@ -69,4 +69,4 @@ var ChapterModal = React.createClass({
   }
 });
 
-module.exports=ChapterModal;
+module.exports = ChapterModal;
