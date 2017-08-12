@@ -24,11 +24,19 @@ body {
 	background-color: #ffca28;
 }
 
+.ui.button:hover {
+	background-color: #ffca28;
+}
+
 .material-icons {
 	color: white;
 }
 
 .material-icons:hover {
+	color: black;
+}
+
+.material-icons:focus {
 	color: black;
 }
 
@@ -65,7 +73,7 @@ h5 {
 }
 
 .backgroundImage {
-	width:100%;
+	width: 75%;
 	/*margin:1% 5%;*/
 }
 .login {
