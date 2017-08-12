@@ -7,7 +7,7 @@ var background = React.createClass({
 
   	return (
 	  	<div className="col s8">
-			<img className="enlarge" src="/static/assets/imgs/montrends.jpg" />
+			<img className="enlarge" src="/static/assets/imgs/screenshots/books.png" />
 		</div>
 		)
 	}

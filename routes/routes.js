@@ -229,7 +229,7 @@ module.exports = function(app) {
       });
   });
 
-  // SEND MEMBER A NEW HASHED PASSWORD
+  // SEND MEMBER A NEW RANDOM PASSWORD
   app.post('/api/send_email', function(req, res) {       
     var newPassword = randomstring.generate(8);
     console.log("Random string", newPassword);
@@ -277,7 +277,7 @@ module.exports = function(app) {
           })
         })
       } else {
-    res.send("invalid user")
+        res.send("invalid user")
       };
     });
   });
@@ -331,7 +331,7 @@ module.exports = function(app) {
   });
       
 
-  app.post("/api/updateCurrentbook",function(req,res){
+  app.post("/api/updateCurrentbook", function(req,res){
     var id=req.body.id;
     console.log("id is" + id);
     db.Member.update({
@@ -343,38 +343,11 @@ module.exports = function(app) {
     }).then(function(data){
       res.json(data);
     })
-  });
-  //   db.Book.create({
-  //           where:{
-  //               title: req.body.title
-  //           }
-  // }).then(function(data){
-  //           if(data){
-  //               var book_id = data.dataValues.id;
-  //               db.Book.findOne({
-  //                   where:{
-  //                       id : book_id
-  //                   }
-  //               }).then(function(data){
-  //                   console.log("BOOK going to db: ", req.body.title);
-  //                   console.log(data);
-  //                       db.Book.update({
-  //                           Title: req.body.title
-  //                       }, {
-  //                           where: {
-  //                               id: book_id
-  //                           }
-  //                       }).then(function() {
-  //                           res.send(true);
-
-  //                   });
-  //               });
-  //           };
-  //     });
+   });
   });
 
   app.get("/book",
-    require('connect-ensure-login').ensureLoggedIn('/login'),
+    require('connect-ensure-login').ensureLoggedIn('/login'), 
     function(req,res){
       db.Book.findOne({
         where:{
@@ -385,12 +358,14 @@ module.exports = function(app) {
     });
   });  
 
+
   // Send whole team a text message when a user finishes book.
   app.get("/phone",
     require('connect-ensure-login').ensureLoggedIn('/login'),
-    function(req,res){
+    function(req, res){
     var email = req.user.email;
     var user = req.user.first_name;
+    // var phone = req.user.phone;
       db.Book.findOne({
         attributes: ['title'],
           where: {
@@ -398,10 +373,6 @@ module.exports = function(app) {
         }
       }).then(function(data) {
         var book = data.dataValues.title;
-        console.log("BOOK ", book);
-        db.Member.findAll({
-          attributes: ['phone']
-      }).then(function(data){
         db.Member.update({
           current_book: 0,
           chapter: 0
@@ -410,47 +381,93 @@ module.exports = function(app) {
             id: req.user.id
           }
         }).then(function(data) {
-        // Calling Nexmo for SMS
-        // Need to handle throttling error in future build
-        const Nexmo = require('nexmo');
-        const nexmo = new Nexmo({
-          apiKey: keys.apiKey,
-          apiSecret: keys.apiSecret
-      });
-      
-      nexmo.message.sendSms(
-          12013517019, '15172315669', user +' finished ' +book ,
-          (err, responseData) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.dir(responseData);
+        db.Member.findAll({
+          attributes: ['phone']
+        }).then(function(phoneNumbers){
+        for (i = 0; i < phoneNumbers.length; i++) {
+          var numbers = [phoneNumbers[i].dataValues.phone];
+          // Calling Nexmo for SMS
+          // Need to handle throttling error in future build
+          const Nexmo = require('nexmo');
+          const nexmo = new Nexmo({
+            apiKey: keys.apiKey,
+            apiSecret: keys.apiSecret
+          });
+
+          nexmo.message.sendSms(
+            12013517019, '1'+ numbers, user +' finished ' + book,
+            (err, responseData) => {
+              if (err) {
+                console.log(err);
+              } else {
+                console.dir(responseData);
+            }
+          });
         }
-      });
-
-      nexmo.message.sendSms(
-          12013517019, '13125604191', user +' finished ' +book ,
-          (err, responseData) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.dir(responseData);
-      }
-    });
-
-      nexmo.message.sendSms(
-          12013517019, '13126468613', user +' finished ' +book ,
-          (err, responseData) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.dir(responseData);
-      }
-    });
-        res.json(data);
+      res.json(data);
     });
    });
   });
 });
+
+//   // Send whole team a text message when a user finishes book.
+//   app.get("/phone",
+//     require('connect-ensure-login').ensureLoggedIn('/login'),
+//     function(req, res){
+//     var email = req.user.email;
+//     var user = req.user.first_name;
+//     // var phone = req.user.phone;
+//       db.Book.findOne({
+//         attributes: ['title'],
+//           where: {
+//             id: req.user.current_book
+//         }
+//       }).then(function(data) {
+//         var book = data.dataValues.title;
+//         db.Member.findAll({
+//           attributes: ['phone']
+//       }).then(function(data){
+//         console.log("LBLSLSKSKSKSL");
+//         console.log()
+//         db.Member.update({
+//           current_book: 0,
+//           chapter: 0
+//         }, {
+//           where: {
+//             id: req.user.id
+//           }
+//         }).then(function(data) {
+//         // Calling Nexmo for SMS
+//         // Need to handle throttling error in future build
+//         const Nexmo = require('nexmo');
+//         const nexmo = new Nexmo({
+//           apiKey: keys.apiKey,
+//           apiSecret: keys.apiSecret
+//       });
+
+//       nexmo.message.sendSms(
+//           12013517019, '1'+ phone, user +' finished ' + book,
+//           (err, responseData) => {
+//         if (err) {
+//           console.log(err);
+//         } else {
+//           console.dir(responseData);
+//         }
+//       });
+
+//       nexmo.message.sendSms(
+//           12013517019, '13122863273', user +' finished ' + book,
+//           (err, responseData) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         console.dir(responseData);
+//       }
+//     });
+//         res.json(data);
+//     });
+//    });
+//   });
+// });
 
 };
