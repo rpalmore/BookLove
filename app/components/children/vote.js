@@ -10,17 +10,17 @@ var helpers = require("../utils/helpers");
 
 var vote = React.createClass({
     getInitialState: function() {
-        return { shelf: [],
-                clickedBook: ''};
+        return { 
+            shelf: [],
+            clickedBook: ''
+        };
     },
-
 
     loadServerData: function() {
         $.get("/shelf", function(result) {
         var shelf = JSON.parse(result);
         this.setState({ shelf: shelf });
         }.bind(this))
-
     },
 
     componentDidMount: function() {
@@ -36,7 +36,6 @@ var vote = React.createClass({
     handleSubmit: function(event) {
     event.preventDefault();
     console.log("CLICKED Winner");
-    
   },
 
 
@@ -47,7 +46,6 @@ var vote = React.createClass({
         
         var titles = this.state.shelf.slice(0, 5).map(book => {
              return( 
-
 
             <div className="ui unstackable items" key={ book.title}>
                 <div className="item">
@@ -93,9 +91,6 @@ var vote = React.createClass({
 
             ) 
         })
-
-
-
       
              return (
                 <div className="outerVote">

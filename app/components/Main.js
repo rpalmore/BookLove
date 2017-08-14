@@ -1,14 +1,26 @@
 
 var React = require("react");
 
+var axios = require("axios");
+
 var Link = require("react-router").Link;
 
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+
+// Styling our component
+// ======================================|
+const divStyle = {
+  padding: 20,
+  backgroundColor: '#4db6ac',
+};
 
 var Main = React.createClass({
 
   getInitialState: function() {
     return {
+      first_name: "",
+      last_name: "",
+      photo_path: "",
       visible: false,
       };
   },
@@ -17,6 +29,18 @@ var Main = React.createClass({
       this.setState({
         visible: !this.state.visible
       })
+  },
+
+  componentWillMount() {
+    axios.get("/request").then(function(response) {
+    console.log("axios results", response);
+    var data = response.data;
+    this.setState({ 
+      first_name: data.first_name,
+      last_name: data.last_name,
+      photo_path: data.photo_path,
+      });
+    }.bind(this));
   },
 
   render: function() {
@@ -37,18 +61,26 @@ var Main = React.createClass({
         <Sidebar.Pushable as={Segment}>
           
           <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
-
-            <Menu.Item name='home'>
-              <Icon name='home' />
-              Home
+           <div style={divStyle}>
+           <Image src={'/static'+this.state.photo_path} size='tiny' shape='circular' centered />
+            <Menu.Item name='username'>
+              {this.state.first_name + " " + this.state.last_name}
             </Menu.Item>
-            <Menu.Item name='gamepad'>
-              <Icon name='gamepad' />
-              Games
+            </div>
+            <Menu.Item name='profile'>
+              <Link to="/profile">Profile</Link>
             </Menu.Item>
-            <Menu.Item name='camera'>
-              <Icon name='camera' />
-              Channels
+            <Menu.Item name='discuss'>
+              <Link to="/discuss">Discussion</Link>
+            </Menu.Item>
+            <Menu.Item name='browse'>
+              <Link to="/vote">Browse</Link>
+            </Menu.Item>
+            <Menu.Item name='faq'>
+              FAQ
+            </Menu.Item>
+            <Menu.Item name='logout'>
+              <a href="/logout">Log Out</a>
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
