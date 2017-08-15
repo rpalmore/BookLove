@@ -68,19 +68,19 @@ var Main = React.createClass({
             </Menu.Item>
             </div>
             <Menu.Item name='profile'>
-              <Link to="/profile">Profile</Link>
+              <Link onClick={this.toggleVisibility} to="/profile">Profile</Link>
             </Menu.Item>
             <Menu.Item name='discuss'>
-              <Link to="/discuss">Discussion</Link>
+              <Link onClick={this.toggleVisibility} to="/discuss">Discussion</Link>
             </Menu.Item>
             <Menu.Item name='browse'>
-              <Link to="/vote">Browse</Link>
+              <Link onClick={this.toggleVisibility} to="/vote">Browse</Link>
             </Menu.Item>
             <Menu.Item name='faq'>
               FAQ
             </Menu.Item>
             <Menu.Item name='logout'>
-              <a href="/logout">Log Out</a>
+              <a onClick={this.toggleVisibility} href="/logout">Log Out</a>
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
@@ -89,7 +89,17 @@ var Main = React.createClass({
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-      
+
+        <footer className="page-footer">
+          <div className="row valign-wrapper">
+            <div className="col s6">
+              <span className="copyright"><strong>© 2017 Copyright Book Love</strong></span>
+            </div>
+            <div className="col s6">
+              <a className="grey-text text-lighten-4 right" href="https://github.com/rpalmore/BookLove" target="_blank"><Icon name='github' size='large'/></a>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
