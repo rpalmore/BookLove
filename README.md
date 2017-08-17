@@ -29,9 +29,9 @@ We offer your community a peek at your Goodreads profile and "to-read" shelf for
 
 ## Authors
 
-* **Rebecca Palmore** - [Github Link](https://github.com/rpalmore)
-* **Yilin Xu** - [Github Link](https://github.com/yilinxu)
-* **Sarah Mandley** - [Github Link](https://github.com/saerieanna)
+* [Rebecca Palmore](https://github.com/rpalmore)
+* [Yilin Xu](https://github.com/yilinxu)
+* [Sarah Mandley](https://github.com/saerieanna)
 
 ## Screenshots
 
