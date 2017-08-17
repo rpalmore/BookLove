@@ -154,24 +154,24 @@ module.exports = function(app) {
   });
 
   // REQUEST A PROFILE BY MEMBER ID
-  app.get("/profile/:id", 
-    require('connect-ensure-login').ensureLoggedIn('/login'),
-    function(req, res) {      
-      console.log("routehit", req.params.id);
-      console.log("LOGGED IN", req.user);
-      db.Member.findOne({
-        where: {
-          id: req.params.id
-        },
-      }).then(function(member){ 
-        var profileObject = {
-          favorite_book: member.dataValues.favorite_book,
-        }
-        console.log("profileObject: ", profileObject);
-        console.log(profileObject.favorite_book);
-        res.json(member);
-    });
-  });
+  // app.get("/profile/:id", 
+  //   require('connect-ensure-login').ensureLoggedIn('/login'),
+  //   function(req, res) {      
+  //     console.log("routehit", req.params.id);
+  //     console.log("LOGGED IN", req.user);
+  //     db.Member.findOne({
+  //       where: {
+  //         id: req.params.id
+  //       },
+  //     }).then(function(member){ 
+  //       var profileObject = {
+  //         favorite_book: member.dataValues.favorite_book,
+  //       }
+  //       console.log("profileObject: ", profileObject);
+  //       console.log(profileObject.favorite_book);
+  //       res.json(member);
+  //   });
+  // });
 
   // REQUEST A PROFILE BY MEMBER ID
   app.get("/profile/:id", 
@@ -290,7 +290,6 @@ module.exports = function(app) {
     let sample_user = 11152546;
     console.log("this is the selected user's shelf!");
     let dump = json => {
-    
 
     //looping through the books with .map in child vote//
     const books = json.GoodreadsResponse.books[0].book;

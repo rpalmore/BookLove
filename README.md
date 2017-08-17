@@ -1,12 +1,14 @@
 # BookLove
 
-DO you wish you could be in a book club but you don't have time or you don't live near your friends?  Join BookLove!  BookLove is a virtual book club where you and your friends can read and discuss books together.  Take turns being captain and let your friends vote on which book from your Goodreads "To-Read" shelf to read. Discussion entries require a chapter input, so your friend who always gives away spoilers can't ruin the moment for you anymore.  Also, visit your club member's pages to see how far they are in the book, and even get a text when one of your friends has finished!  This is a fresh take on online reading with friends.
+BookLove is a virtual book club that allows friendly discussion no matter where you are&mdash;in real life, or in the book! Our "no-spoilers" app ensures you only see conversations related to the chapters you've read. 
+
+We offer your community a peek at your Goodreads profile and "to-read" shelf for book selection ideas. Take turns picking a book for the club, visit your friend's profile pages to see how far they are in the book, and when you'e done, share the news! We'll send a text to your group when you're finished&mdash;for motivation and/or bragging rights. This is a fresh take on reading with friends.
 
 ## Getting Started
 
 Link to App: [BookLove](https://teambooklove.herokuapp.com/)
 
-## Built With
+## Built with
 
 * React
 * React-router
@@ -20,7 +22,6 @@ Link to App: [BookLove](https://teambooklove.herokuapp.com/)
 * Sequelize
 * Webpack
 
-...to name a few
 
 ## Authors
 
