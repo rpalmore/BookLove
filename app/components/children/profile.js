@@ -57,6 +57,7 @@ var profile = React.createClass({
       last_name: data.last_name,
       email: data.email,
       favorite_book: data.favorite_book,
+      favorite_genre: data.favorite_genre,
       goodreads_url: data.goodreads_url,
       current_book: data.current_book,
       id: data.id,
@@ -99,6 +100,7 @@ var profile = React.createClass({
               ('This is where we\'ll track my chapter progress')
             }/>
             <List.Item icon='heart' content={'My favorite book is ' +this.state.favorite_book} />
+            <List.Item icon='thumbs up' content={'Favorite genre: ' +this.state.favorite_genre} />
             <List.Item icon='mail' content={this.state.email}/>
             <List.Item icon='linkify' content={<a href={this.state.goodreads_url} target='_blank'>Check out my <b>Goodreads profile</b></a>}/>
           </List>
