@@ -14,6 +14,12 @@ const divStyle = {
   backgroundColor: '#4db6ac',
 };
 
+// Will need to add back in at some point
+
+//             <Menu.Item name='faq'>
+//               FAQ
+//             </Menu.Item>
+
 var Main = React.createClass({
 
   getInitialState: function() {
@@ -72,9 +78,6 @@ var Main = React.createClass({
             <Menu.Item name='browse'>
               <Link onClick={this.toggleVisibility} to="/vote">Browse</Link>
             </Menu.Item>
-            <Menu.Item name='faq'>
-              FAQ
-            </Menu.Item>
             <Menu.Item name='logout'>
               <a onClick={this.toggleVisibility} href="/logout">Log Out</a>
             </Menu.Item>
@@ -86,7 +89,7 @@ var Main = React.createClass({
           </Sidebar.Pusher>
         </Sidebar.Pushable>
 
-        {/*<footer className="page-footer">
+        <footer className="page-footer">
           <div className="row valign-wrapper">
             <div className="col s6">
               <span className="copyright"><strong>© 2017 Copyright Book Love</strong></span>
@@ -95,7 +98,7 @@ var Main = React.createClass({
               <a className="grey-text text-lighten-4 right" href="https://github.com/rpalmore/BookLove" target="_blank"><Icon name='github' size='large'/></a>
             </div>
           </div>
-        </footer>*/}
+        </footer>
       </div>
     );
   }
