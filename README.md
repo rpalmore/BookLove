@@ -1,6 +1,6 @@
 # BookLove
 
-[See it live on Heroku!](https://teambooklove.herokuapp.com/)
+[See it live on Heroku!](https://booklovelive.herokuapp.com/)
 
 Guests can enter the site using the following credentials
 
