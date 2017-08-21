@@ -20,7 +20,7 @@ var helper = {
     return axios.post("/api/new_member", newMember)
       .then(function(response) {
         console.log("print out response", response)
-        window.location.href="/login"
+        window.location.href="/"
       });
   },
 
