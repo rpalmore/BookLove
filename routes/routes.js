@@ -153,25 +153,6 @@ module.exports = function(app) {
     });
   });
 
-  // REQUEST A PROFILE BY MEMBER ID
-  // app.get("/profile/:id", 
-  //   require('connect-ensure-login').ensureLoggedIn('/login'),
-  //   function(req, res) {      
-  //     console.log("routehit", req.params.id);
-  //     console.log("LOGGED IN", req.user);
-  //     db.Member.findOne({
-  //       where: {
-  //         id: req.params.id
-  //       },
-  //     }).then(function(member){ 
-  //       var profileObject = {
-  //         favorite_book: member.dataValues.favorite_book,
-  //       }
-  //       console.log("profileObject: ", profileObject);
-  //       console.log(profileObject.favorite_book);
-  //       res.json(member);
-  //   });
-  // });
 
   // REQUEST A PROFILE BY MEMBER ID
   app.get("/profile/:id", 
@@ -287,7 +268,7 @@ module.exports = function(app) {
     let key = keys.grkey
     let secret = keys.grsecret
 
-    let sample_user = 11152546;
+    let sample_user = 69348922;
     console.log("this is the selected user's shelf!");
     let dump = json => {
 

@@ -6,6 +6,10 @@ var Link = require("react-router").Link;
 
 var helpers = require("../utils/helpers");
 
+// Too add back in shortly
+
+// <li><a href="/faq">Frequently Asked Questions</a></li>
+
 var Menu = React.createClass({
 
 <div class="col s4">
@@ -25,7 +29,6 @@ var Menu = React.createClass({
 				  <li><a href="/index">Activity Feed</a></li>
 				  <li><a href="/profile/{{user.name}}">Profile</a></li>
 				  <li><a href="/givebadge">Give a Badge!</a></li>
-				  <li><a href="/faq">Frequently Asked Questions</a></li>
 				  <li><a href="/logout">Log Out</a></li>
 			</ul>	
 	</div>
