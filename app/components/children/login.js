@@ -4,6 +4,10 @@ var helpers = require("../utils/helpers");
 
 var PasswordModal = require("./passwordmodal.js");
 
+// var Register = require("./register.js");
+
+
+
 var login = React.createClass({
 
 	getInitialState: function() {
@@ -23,14 +27,12 @@ var login = React.createClass({
 
 	render: function() {
 		return (
-	  	<div className="login">
-
-			<form action="/login" method="post" className="col s12">
-				<div className="form-container">
-				  <center>
-					<h3 className="teal-text text-lighten-2">Welcome back</h3>
-				  </center>
-					<div className="row">
+		<div className="container">
+	  	  <div className="row login">
+	  		<div className="col s10 offset-s1 col m6 offset-m3">
+			  <form action="/login" method="post">
+				<div className="row">
+					<h3 className="center-align teal-text text-lighten-2">Welcome back!</h3>
 						<div className="input-field col s12">
 							<input id="email" name="username" type="email" value={this.state.email} onChange={this.handleChange} className="validate" />
 							<label>Email</label>
@@ -44,13 +46,16 @@ var login = React.createClass({
 					</div>
 					<br />
 					<center>
-						<button className="btn red lighten-2" type="submit" name="action">Connect</button>
-						<br />
-						<br />
-							<PasswordModal />
+						<button className="btn red lighten-2" type="submit" name="action">Connect
+					    </button>
+						  <br />
+						  <br />
+						<PasswordModal /> | New user: <a className='signUp teal-text text-lighten-2'>Register!</a>
 					</center>
-				</div>
-			</form>
+
+			  </form>
+		    </div> 
+		  </div>
 		</div>
 		)
 	}

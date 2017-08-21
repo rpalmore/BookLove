@@ -14,17 +14,18 @@ We offer your community a peek at your Goodreads profile and "to-read" shelf for
 
 ## Built with
 
+* Materialize
+* Semantic-UI
+* Textillate.js
 * React
 * React-router
-* Axios
 * Express
-* MySql
-* Nexmo
-* Passport
-* Semantic-UI
-* Materialize
+* Axios
+* MySQL
 * Sequelize
-* Webpack
+* Passport
+* Nexmo
+* Nodemailer
 
 
 ## Authors

@@ -51,10 +51,6 @@ var Main = React.createClass({
          <div className="nav-wrapper">
           <Button onClick={this.toggleVisibility}><i className="material-icons">menu</i></Button>
             <a href="/" className="brand-logo center hoverable white-text">Book Love</a>
-             <ul id="nav-mobile" className="right">
-              <li className="tab col s4 hoverable white-text"><Link to="/register">Register</Link></li>
-              <li className="tab col s4 hoverable white-text"><Link to="/login">Login</Link></li>
-             </ul>
           </div>
         </nav>
 
@@ -90,7 +86,7 @@ var Main = React.createClass({
           </Sidebar.Pusher>
         </Sidebar.Pushable>
 
-        <footer className="page-footer">
+        {/*<footer className="page-footer">
           <div className="row valign-wrapper">
             <div className="col s6">
               <span className="copyright"><strong>© 2017 Copyright Book Love</strong></span>
@@ -99,7 +95,7 @@ var Main = React.createClass({
               <a className="grey-text text-lighten-4 right" href="https://github.com/rpalmore/BookLove" target="_blank"><Icon name='github' size='large'/></a>
             </div>
           </div>
-        </footer>
+        </footer>*/}
       </div>
     );
   }

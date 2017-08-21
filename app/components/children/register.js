@@ -37,8 +37,8 @@ var register = React.createClass({
   	return(
 		<div className="register">
 			<form onSubmit={this.handleSubmit} className="col s12">
-				<div className="form-container">
-					<h3 className="red-text text-light-5">Welcome</h3>
+				<div className="container">
+					<h3 className="teal-text text-lighten-2">Welcome</h3>
 					<div className="row">
 						<div className="input-field col s6">
 							<input id="first_name" type="text" value={this.state.first_name} onChange={this.handleChange} className="validate" />
@@ -90,7 +90,10 @@ var register = React.createClass({
 						</div>
 					</div>
 					<center>
-						<button className="btn waves-effect red lighten-2" type="submit" name="action">Submit</button>
+						<button id="regBtn" className="btn waves-effect red lighten-2" type="submit" name="action">Submit</button>
+					</center>
+					<center>
+						Already registered? <a className='signIn teal-text text-lighten-2'>Log in!</a>
 					</center>
 				</div>
 			</form>

@@ -1,8 +1,47 @@
 body {
-	background: #f5f5f5;
+	/*background: #f5f5f5;*/
 }
 
+.title {
+	font-size: 58px;
+/*	font-family: 'Lobster', cursive;*/
+}
 
+.tlt {
+	position: absolute;
+	width: 100%;
+	padding-top: 45px;
+	padding-right: 10px;
+	padding-left: 10px;
+	z-index: 100;
+}
+
+.tag {
+	font-size: 24px;
+	position: absolute;
+	padding: 100px;
+	padding-right: 10px;
+	padding-left: 10px;
+	width: 100%;
+	z-index: 100;
+}
+
+.backgroundImage {
+	width: 80%;
+	left: 10%;
+	right: 10%;
+	position: absolute;
+	top: 132px;
+	z-index: 90;
+}
+
+.login {
+	padding-top: 132px;
+}
+
+#regBtn {
+	margin-bottom: 20px;
+}
 /*SIDE NAVIGATION STYLES*/
 
 /*Override Semantic UI styles for side nav*/
@@ -41,17 +80,17 @@ body {
 }
 
 nav .brand-logo.center {
-	font-family: 'Lobster', cursive;
+	/*font-family: 'Lobster', cursive;*/
 	padding-left: 15px;
 	padding-right: 15px;
 	font-size: 2.6rem;
 }
 
-.container {
+/*.container {
 	margin-top: 80px;
 	width: 400px;
 	height: 700px;
-}
+}*/
 
 .tabs .indicator {
 	background-color: #e0f2f1;
@@ -60,24 +99,19 @@ nav .brand-logo.center {
 }
 
 .form-container {
-	padding: 40px;
-	padding-top: 10px;
+/*	padding-top: 136px;*/
+/*	padding-right: 40px;*/
+/*	padding-bottom: 10px;*/
+/*	padding-left: 40px;*/
 }
 
 .confirmation-tabs-btn {
 	position: absolute;
 }
 
-.backgroundImage {
-	width: 75%;
-	/*margin:1% 5%;*/
-}
-.login {
-	width:60%;
-	margin-left:20%;
-}
-
 .register {
+	padding-top: 76px;
+	padding-bottom: 20px;
 	width:80%;
 	margin-left:10%;
 }

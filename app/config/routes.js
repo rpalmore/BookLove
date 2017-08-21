@@ -22,7 +22,7 @@ var Main = require("../components/Main");
 var login = require("../components/children/login");
 var register = require("../components/children/register");
 var vote = require("../components/children/vote");
-var background = require("../components/children/background");
+var landingpage = require("../components/children/landingpage");
 var profile = require("../components/children/profile");
 var discuss = require("../components/children/discuss");
 var chaptermodal = require("../components/children/chaptermodal");
@@ -32,15 +32,11 @@ var passwordmodal = require("../components/children/passwordmodal");
 module.exports = (
   // High level component is the Router component.
   <Router history={browserHistory}>
-    <Route path="/" component={Main}>
-		<Route path="/register" component={register} />
-		<Route path="/login" component={login} />
+   <Route path="/" component={landingpage} />
+    <Route path="/index" component={Main}>
 		<Route path="/vote" component={vote} />
 		<Route path="/profile" component={profile} />
 		<Route path="/discuss" component={discuss} />
-		<Route path="/chaptermodal" component={chaptermodal} />
-		<Route path="/passwordmodal" component={passwordmodal} />
-		<IndexRoute component={background} />
    </Route>
   </Router>
 );

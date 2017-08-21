@@ -39,11 +39,11 @@ var PasswordModal = React.createClass({
 
   render: function() {
     return(
-      <Modal size='small' trigger={<a className="btn btn-floating amber lighten-1"><i className="material-icons">help_outline</i></a>} closeIcon='close'>
+      <Modal size='small' trigger={<a className="teal-text text-lighten-2 forgotPW">Forgot Password?</a>} closeIcon='close'>
           <Header style={headerStyle} icon='mail outline' content='Forgot password? Please enter your email address' />
             <Modal.Content>
-              <form onSubmit={this.handleSubmit} className="col s12">
-                <div className="form-container">
+              <form onSubmit={this.handleSubmit}>
+                <div className="form-container-modal">
                   <div className="row">
                     <div className="input-field col s12">
                     <input id="email" type="email" value={this.state.email} onChange={this.handleChange} placeholder="Your email" className="validate" />
