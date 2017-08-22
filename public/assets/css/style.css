@@ -39,9 +39,23 @@ body {
 	padding-top: 132px;
 }
 
+.signUp {
+	cursor: pointer;
+}
+
+.signIn {
+	cursor: pointer;
+}
+
+.forgotPW {
+	cursor: pointer;
+}
+
 #regBtn {
 	margin-bottom: 20px;
 }
+
+
 /*SIDE NAVIGATION STYLES*/
 
 /*Override Semantic UI styles for side nav*/

@@ -6,18 +6,21 @@ var helpers = require("../utils/helpers");
 import { Image, List, Card, Container, Divider, Feed, Progress, Button, Header, Icon, Modal } from 'semantic-ui-react';
 
 const divStyle = {
-  padding: 20,
+  paddingTop: 20,
+  paddingBottom: 20,
   backgroundColor: '#80cbc4',
 };
 
 const text = {
-  padding: 10,
-
+  padding: 0,
 };
 
 const commentDiv = {
-  margin: 15
-}
+  marginTop: 15,
+  // borderBottomColor: '#ffffff',
+  // borderBottomWidth: 1,
+  // borderBottomStyle: 'solid',
+};
 
 var listComment = [];
 
@@ -79,20 +82,20 @@ var discuss = React.createClass({
     console.log("print this" + JSON.stringify(this.state.comments));
     var listComment = this.state.comments.map((comment,i) => {
 
-              return <div key={i}><img src={'/static'+comment.image} className="circle col s2" /><p style={text}>{comment.comment} </p> <p>{comment.book}, Chapter {comment.chapter}</p><hr /></div>
+              return <div style={commentDiv} key={i}><img src={'/static'+comment.image} className="circle col s2" /><p style={text}>{comment.comment}</p> <p>I'm talking about: {comment.book} | chapter: {comment.chapter}</p><Divider clearing="true" /></div>
           });
 		return(
   		<div style={divStyle}>
   			<Image src={'/static'+this.state.photo_path} size='small' shape='circular' centered />
         <div className="row">
-          <div className="col s4 offset-s4">
-            <div style={commentDiv}>{listComment}</div>
+          <div className="col s6 offset-s3">
+            <div>{listComment}</div>
           </div>
         </div>
 
-        <div className="row">
+        <div className="row center-align">
           <form onSubmit={this.handleSubmit} className="commentForm col s4 offset-s4">
-            <input type="text" value={this.state.newcomment} id="newcomment" onChange={this.handleChange} placeholder="****Comment Here****" />
+            <input type="text" value={this.state.newcomment} id="newcomment" onChange={this.handleChange} placeholder="Your Comment" />
             <button type="submit" className="btn btn-success">Comment</button>
           </form>
         </div>
@@ -100,4 +103,4 @@ var discuss = React.createClass({
 		)
 	}
 });
-module.exports=discuss;
+module.exports = discuss;

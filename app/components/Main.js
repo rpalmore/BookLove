@@ -56,7 +56,7 @@ var Main = React.createClass({
         <nav>
          <div className="nav-wrapper">
           <Button onClick={this.toggleVisibility}><i className="material-icons">menu</i></Button>
-            <a href="/" className="brand-logo center hoverable white-text">Book Love</a>
+            <a className="brand-logo center white-text">Book Love</a>
           </div>
         </nav>
 

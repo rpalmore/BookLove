@@ -30,6 +30,7 @@ var selection ="";
 $(document).ready(function(){
 
     $('.register').hide();
+    $('.login').hide();
 
 	$(function () {
     	$('.tlt').textillate({ 
@@ -59,6 +60,7 @@ $(document).ready(function(){
     		   	callback: function fadePhoto() {
     		   	  	$('.backgroundImage').fadeOut('slow')
     		   	  	$('.tag').hide();
+                    $('.login').show();
     		   	  	$('.tlt').show();
     		   	}
     		   }

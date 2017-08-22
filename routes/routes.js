@@ -290,7 +290,7 @@ module.exports = function(app) {
   //POST WINNING BOOK TO DATABASE//
   app.post("/api/book_winner", function(req, res) {
     var title = req.body.book;
-    console.log(title)
+    console.log("TITLE", title)
       db.Member.findAll({
         where: {
           current_book:{

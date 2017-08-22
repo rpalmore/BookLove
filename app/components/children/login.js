@@ -4,10 +4,6 @@ var helpers = require("../utils/helpers");
 
 var PasswordModal = require("./passwordmodal.js");
 
-// var Register = require("./register.js");
-
-
-
 var login = React.createClass({
 
 	getInitialState: function() {
