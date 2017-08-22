@@ -39,12 +39,37 @@ We offer your community a peek at your Goodreads profile and "to-read" shelf for
 ## Screenshots
 
 ### Welcome Page
+
+Includes a rotating tagline
+
 ![](http://i.imgur.com/9G5SCZG.png) 
 
-![Alt text](/public/assets/imgs/screenshots/votepage.png?raw=true "Vote Page")
+### First-Time Registration
 
-![Alt text](/public/assets/imgs/screenshots/profilepage.png?raw=true "Profile Page without an associated book")
+![](http://i.imgur.com/qduBygx.png)
 
-![Alt text](/public/assets/imgs/screenshots/profilepage2.png?raw=true "Profile Page with an associated book")
+### Login
+
+![](http://i.imgur.com/1xWXlUT.png)
+
+### Vote Page
+
+![](http://i.imgur.com/L2JveTG.png)
+
+### Profile Page
+
+User has not yet started a book
+
+![](http://i.imgur.com/ThUknIp.png)
+
+User has a book, but not started reading
+
+![](http://i.imgur.com/fSjHqJV.png)
+
+User has finished half of the book (5 of 10 chapters)
+
+![](http://i.imgur.com/1FlIeBE.png)
+
+### Discussion Page
 
 ![Alt text](/public/assets/imgs/screenshots/profilepage2.png?raw=true "Discussion Page")
