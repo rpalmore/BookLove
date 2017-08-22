@@ -1,6 +1,6 @@
 # BookLove
 
-This app is a work in progress. It's my coding playground, my daily exercise.
+Please note: This app is a work in progress. It's my coding playground, my daily exercise.
 
 [See it live on Heroku!](https://booklovelive.herokuapp.com/)
 
@@ -38,7 +38,8 @@ We offer your community a peek at your Goodreads profile and "to-read" shelf for
 
 ## Screenshots
 
-![Alt text](/public/assets/imgs/screenshots/welcome.png?raw=true "Welcome Page")
+### Welcome Page
+![](http://i.imgur.com/9G5SCZG.png) 
 
 ![Alt text](/public/assets/imgs/screenshots/votepage.png?raw=true "Vote Page")
 
