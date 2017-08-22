@@ -72,4 +72,3 @@ User has finished half of the book (5 of 10 chapters)
 
 ### Discussion Page
 
-![Alt text](/public/assets/imgs/screenshots/profilepage2.png?raw=true "Discussion Page")
