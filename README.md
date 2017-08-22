@@ -1,5 +1,7 @@
 # BookLove
 
+This app is a work in progress. It's my coding playground, my daily exercise.
+
 [See it live on Heroku!](https://booklovelive.herokuapp.com/)
 
 Guests can enter the site using the following credentials
