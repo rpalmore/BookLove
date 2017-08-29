@@ -22,6 +22,7 @@ const listStyle = {
   padding: 20,
   marginTop: 20,
   backgroundColor: '#4db6ac',
+  width: '70%',
 };
 
 const nameStyle = {

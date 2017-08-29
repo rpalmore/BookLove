@@ -27,9 +27,9 @@ body {
 }
 
 .backgroundImage {
-	width: 80%;
-	left: 10%;
-	right: 10%;
+	width: 70%;
+	left: 15%;
+	right: 15%;
 	position: absolute;
 	top: 132px;
 	z-index: 90;
@@ -71,6 +71,7 @@ body {
 	padding-right: 15px;
 	padding-bottom: 0;
 	padding-left: 15px;
+	border-radius: 0;
 }
 
 .ui.button:focus {

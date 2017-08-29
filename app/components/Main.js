@@ -5,7 +5,7 @@ var axios = require("axios");
 
 var Link = require("react-router").Link;
 
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Sidebar, Segment, Sticky, Button, Menu, Image, Icon } from 'semantic-ui-react'
 
 // Styling our component
 // ======================================|
@@ -53,12 +53,14 @@ var Main = React.createClass({
    const { visible } = this.state
     return (
       <div>
+       <div className="navbar-fixed">
         <nav>
          <div className="nav-wrapper">
           <Button onClick={this.toggleVisibility}><i className="material-icons">menu</i></Button>
             <a className="brand-logo center white-text">Book Love</a>
           </div>
         </nav>
+       </div>
 
         <Sidebar.Pushable as={Segment}>
           

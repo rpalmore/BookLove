@@ -28,7 +28,7 @@ var login = React.createClass({
 	  		<div className="col s10 offset-s1 col m6 offset-m3">
 			  <form action="/login" method="post">
 				<div className="row">
-					<h3 className="center-align teal-text text-lighten-2">Welcome back!</h3>
+					<h2 className="center-align teal-text text-lighten-2">Welcome back!</h2>
 						<div className="input-field col s12">
 							<input id="email" name="username" type="email" value={this.state.email} onChange={this.handleChange} className="validate" />
 							<label>Email</label>
