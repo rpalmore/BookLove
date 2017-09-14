@@ -19,7 +19,7 @@ var taglines = [
     'I read it through the grapevine',
     'I’ve been waiting for a book like you',
     'Oops! ... I read it again',
-    'I kissed a book',
+    'I kissed a book, and I liked it',
     'My book club brings all the boys to the yard',
     'My books, my books. My books my books my books',
     'Just read it',
@@ -70,7 +70,7 @@ $(document).ready(function(){
 	function pickTagline() {
       selection = taglines[
         Math.floor(Math.random() * taglines.length)
-    	];
+        ];
     console.log("tagline", selection);
     $('.tag').append(selection);
 	}

@@ -24,15 +24,19 @@ var keys = require("../app/config/keys.js");
   var keys = process.env
 }
 
-var smtpTransport = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
+let transporter = nodemailer.createTransport({
+    service: 'Gmail',
     auth: {
-      user: keys.user,
-      pass: keys.pass
+        type: 'OAuth2',
+        user: keys.user,
+        clientId: keys.clientID,
+        clientSecret: keys.clientSecret,
+        refreshToken: keys.refreshToken,
     }
 });
- 
+
+// Source (partial): https://medium.com/@pandeysoni/nodemailer-service-in-node-js-using-smtp-and-xoauth2-7c638a39a37e
+
 module.exports = function(app) {
 
   app.post("/api/new_member", function(req, res) {
@@ -245,7 +249,7 @@ module.exports = function(app) {
                   text: "Here is your new Book Love password: " + newPassword,
                   html: "<body style='background-color: #e57373; text-align: center; padding-bottom: 15px; padding-top: 15px; font-family: Georgia; font-style: normal; font-size: 1.6rem;'><p style='color: #fffbe4; font-style: italic; font-size: 2.6rem;'>Book Love!</p><p style='color: #fffbe4;'>Here is your new Book Love password: </p><b>" + newPassword + "</b></p><p><a href='https://warm-sea-55516.herokuapp.com/' target='blank' style='color: #00CB88; font-size: 1.3rem; font-style: italic;'>Log in to Book Love</p></body>"
             }
-            smtpTransport.sendMail(mailOptions, function(error, response){
+            transporter.sendMail(mailOptions, function(error, response){
               if (error){
                 console.log(error);
                 res.send("error");
