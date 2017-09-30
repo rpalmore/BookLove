@@ -35,7 +35,7 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-// Source (partial): https://medium.com/@pandeysoni/nodemailer-service-in-node-js-using-smtp-and-xoauth2-7c638a39a37e
+// Useful resource: https://medium.com/@pandeysoni/nodemailer-service-in-node-js-using-smtp-and-xoauth2-7c638a39a37e
 
 module.exports = function(app) {
 
@@ -245,9 +245,9 @@ module.exports = function(app) {
           }).then(function(data){
             var mailOptions = {
               to: email,
-                subject: "Your Book Love Password Request",
-                  text: "Here is your new Book Love password: " + newPassword,
-                  html: "<body style='background-color: #e57373; text-align: center; padding-bottom: 15px; padding-top: 15px; font-family: Georgia; font-style: normal; font-size: 1.6rem;'><p style='color: #fffbe4; font-style: italic; font-size: 2.6rem;'>Book Love!</p><p style='color: #fffbe4;'>Here is your new Book Love password: </p><b>" + newPassword + "</b></p><p><a href='https://warm-sea-55516.herokuapp.com/' target='blank' style='color: #00CB88; font-size: 1.3rem; font-style: italic;'>Log in to Book Love</p></body>"
+              subject: "Your Book Love Password Request",
+              text: "Here is your new Book Love password: " + newPassword,
+              html: "<body style='background-color: #e57373; text-align: center; padding-bottom: 15px; padding-top: 15px; font-family: Georgia; font-style: normal; font-size: 1.6rem;'><p style='color: #fffbe4; font-style: italic; font-size: 2.6rem;'>Book Love!</p><p style='color: #fffbe4;'>Here is your new Book Love password: </p><b>" + newPassword + "</b></p><p><a href='https://warm-sea-55516.herokuapp.com/' target='blank' style='color: #00CB88; font-size: 1.3rem; font-style: italic;'>Log in to Book Love</p></body>"
             }
             transporter.sendMail(mailOptions, function(error, response){
               if (error){
