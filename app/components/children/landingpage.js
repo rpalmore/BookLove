@@ -33,39 +33,33 @@ $(document).ready(function(){
     $('.login').hide();
 
 	$(function () {
-    	$('.tlt').textillate({ 
-    	  loop: true,
-    	  in: { 
-    	  		effect: 'fadeInDown',
-    		  	shuffle: true
-    		  },
-    	  out: { 
-    	  		effect: 'bounceOutUp',
-    		   	shuffle: true,
-    		   	callback: function fadeTitle() {
-    		   		$('.tlt').hide();
-    		   	}
-    		   }
-    	});
+      $('.tlt').textillate({ 
+        loop: false,
+          in: { 
+                effect: 'fadeInDown',
+                shuffle: true
+              }
+        });
     	
     	$('.tag').textillate({ 
-    	  loop: true,
+    	  loop: false,
     	  in: { 
     	  		effect: 'fadeInUp',
     		  	shuffle: true
-    		  },
-    	  out: { 
-    	  		effect: 'flash',
-    		   	shuffle: true,
-    		   	callback: function fadePhoto() {
-    		   	  	$('.backgroundImage').fadeOut('slow')
-    		   	  	$('.tag').hide();
-                    $('.login').show();
-    		   	  	$('.tlt').show();
-    		   	}
-    		   }
-    	});
+    		  }
+        });
+
+        $('.tag').on('inAnimationEnd.tlt', function() {
+          console.log("In animation ended");
+          setTimeout(loadLogin, 1500);
+        });
 	});
+
+    function loadLogin() {
+      $('.backgroundImage').fadeOut('slow');
+      $('.tag').hide();
+      $('.login').show();
+    }
 
 	function pickTagline() {
       selection = taglines[

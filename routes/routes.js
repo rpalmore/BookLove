@@ -273,7 +273,6 @@ module.exports = function(app) {
     let secret = keys.grsecret
 
     let sample_user = 69348922;
-    console.log("this is the selected user's shelf!");
     let dump = json => {
 
     //looping through the books with .map in child vote//

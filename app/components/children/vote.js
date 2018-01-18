@@ -1,7 +1,5 @@
 var React = require("react");
 
-var axios = require("axios");
-
 var Link = require("react-router").Link;
 
 var {Rating, Button} =  require("semantic-ui-react");
@@ -30,12 +28,12 @@ var vote = React.createClass({
     handleChange: function(event, data) {
     console.log("VALUE ================", data.value[0]);
     helpers.postBookWinner(data.value[0]);
-  },
+    },
 
     handleSubmit: function(event) {
     event.preventDefault();
     console.log("CLICKED Winner");
-  },
+    },
 
 
     render: function() {
@@ -43,7 +41,7 @@ var vote = React.createClass({
             return null
         } else 
 
-        var titles = this.state.shelf.slice(0, 5).map(book => {
+        var titles = this.state.shelf.map(book => {
              return( 
 
             <div className="ui unstackable items" key={book.title}>

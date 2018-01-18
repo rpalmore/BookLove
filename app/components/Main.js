@@ -52,7 +52,8 @@ var Main = React.createClass({
   render: function() {
    const { visible } = this.state
     return (
-      <div>
+    <div>
+      <div className="wrapper">
        <div className="navbar-fixed">
         <nav>
          <div className="nav-wrapper">
@@ -90,16 +91,15 @@ var Main = React.createClass({
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
+      </div>
 
-        <footer className="page-footer">
-          <div className="row valign-wrapper">
-            <div className="col s6">
-              <span className="copyright"><strong>© 2017 Copyright Book Love</strong></span>
-            </div>
-            <div className="col s6">
-              <a className="grey-text text-lighten-4 right" href="https://github.com/rpalmore/BookLove" target="_blank"><Icon name='github' size='large'/></a>
-            </div>
-          </div>
+        <footer>
+          <span className="copyright">
+            © 2017 Book Love
+          </span>
+          <a id="footerGithub" className="grey-text text-lighten-4" href="https://github.com/rpalmore/BookLove" target="_blank">
+            <Icon name='github' size='large'/>
+          </a>
         </footer>
       </div>
     );

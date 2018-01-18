@@ -30,7 +30,7 @@ var login = React.createClass({
 				<div className="row">
 					<h2 className="center-align teal-text text-lighten-2">Welcome back!</h2>
 						<div className="input-field col s12">
-							<input id="email" name="username" type="email" value={this.state.email} onChange={this.handleChange} className="validate" />
+							<input id="email" type="email" name="username" value={this.state.email} onChange={this.handleChange} className="validate" required />
 							<label>Email</label>
 						</div>
 					</div>

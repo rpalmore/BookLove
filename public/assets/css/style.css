@@ -1,7 +1,15 @@
 body {
 	/*background: #f5f5f5;*/
+
 }
 
+.wrapper {
+  min-height: calc(100vh - 30px);
+  background-color: rgb(128, 203, 196);
+/*  max-width: 1440px;
+  min-width: 320px;
+  margin: auto;*/
+}
 .title {
 	font-size: 58px;
 /*	font-family: 'Lobster', cursive;*/
@@ -27,9 +35,10 @@ body {
 }
 
 .backgroundImage {
-	width: 70%;
-	left: 15%;
-	right: 15%;
+	width: 55%;
+	left: 0;
+	right: 0;
+	margin: auto;
 	position: absolute;
 	top: 132px;
 	z-index: 90;
@@ -161,13 +170,28 @@ nav .brand-logo.center {
     margin-bottom: 10px;
 }
 
-/*.instruction {
-	font-family: 'Permanent Marker', cursive;
-}*/
-
 /*FOOTER STYLES*/
 
-/*Override Materialize styles for footer*/
-.page-footer {
-	padding: 5px 10px 0px 10px;
+footer {
+	background-color: #ee6e73;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
 }
+
+.copyright {
+	padding-right: 5px;
+}
+
+/*#footerGithub {
+  -moz-border-radius: 1.5em;
+  -webkit-border-radius: 1.5em;
+  border-radius: 1.5em;
+}*/
+
+i.icon:hover {
+  background-color: #ffca28;
+  color: #000000;
+}
+
+
