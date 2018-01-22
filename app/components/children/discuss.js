@@ -63,7 +63,6 @@ var discuss = React.createClass({
   }.bind(this));
   },
 
-
   handleChange: function(event) {
     console.log("INPUT CHANGED");
     // Capture any change in the input fields
@@ -78,15 +77,22 @@ var discuss = React.createClass({
     helpers.postNewComment(this.state.chapter, this.state.email, this.state.newcomment, this.state.current_book)
   },
 
+  handleClick: function() {
+    console.log("Clicked!");
+    event.preventDefault();
+    // TO DO: Click needs to go to that person's profile page.
+    // This may require different URL structure ... as /profile will only work for user who is logged in.
+  },
+
 	render: function() {
     console.log("print this" + JSON.stringify(this.state.comments));
     var listComment = this.state.comments.map((comment,i) => {
 
-              return <div style={commentDiv} key={i}><img src={'/static'+comment.image} className="circle col s2" /><p style={text}>{comment.comment}</p> <p>I'm talking about: {comment.book} | chapter: {comment.chapter}</p><Divider clearing="true" /></div>
+              return <div style={commentDiv} key={i}><a onClick={this.handleClick}><img src={'/static'+comment.image} className="circle col s2" /></a><p style={text}>{comment.comment}</p> <p>{comment.sender} is talking about: {comment.book} | Chapter: {comment.chapter}</p><Divider clearing={true} /></div>
           });
 		return(
   		<div style={divStyle}>
-  			<Image src={'/static'+this.state.photo_path} size='small' shape='circular' centered />
+  			{/*<Image src={'/static'+this.state.photo_path} size='small' shape='circular' centered />*/}
         <div className="row">
           <div className="col s6 offset-s3">
             <div>{listComment}</div>
