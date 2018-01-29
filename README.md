@@ -10,7 +10,7 @@ Username: teambooklove@gmail.com | Password: guest
 
 BookLove is a virtual book club that allows friendly discussion no matter where you are&mdash;in real life, or in the book! Our "no-spoilers" app ensures you only see discussion board conversations related to the chapters you've read. 
 
-We offer your community a peek at your Goodreads profile and "to-read" shelf for book selection ideas. Take turns picking a book for the club, visit your friend's profile pages to see how far they are in the book, and when you'e done, share the news! We'll send a text to your group when you're finished&mdash;for motivation and/or bragging rights. This is a fresh take on reading with friends.
+We offer your community a peek at your Goodreads profile and "to-read" shelf for book selection ideas. Take turns picking a book for the club, visit your friend's profile pages to see how far they are in the book, and when you're done, share the news! We'll send a text to your group when you're finished&mdash;for motivation and/or bragging rights. This is a fresh take on reading with friends.
 
 ## Built with
 

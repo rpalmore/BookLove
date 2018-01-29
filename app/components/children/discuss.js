@@ -42,7 +42,7 @@ var discuss = React.createClass({
 
   componentWillMount() {
     axios.get("/request").then(function(response) {
-    console.log("axios results", response);
+    // console.log("axios results", response);
     var data = response.data;
     this.setState({ 
       photo_path: data.photo_path,
@@ -85,7 +85,7 @@ var discuss = React.createClass({
   },
 
 	render: function() {
-    console.log("print this" + JSON.stringify(this.state.comments));
+    // console.log("print this" + JSON.stringify(this.state.comments));
     var listComment = this.state.comments.map((comment,i) => {
 
               return <div style={commentDiv} key={i}><a onClick={this.handleClick}><img src={'/static'+comment.image} className="circle col s2" /></a><p style={text}>{comment.comment}</p> <p>{comment.sender} is talking about: {comment.book} | Chapter: {comment.chapter}</p><Divider clearing={true} /></div>

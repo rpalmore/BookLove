@@ -27,13 +27,13 @@ var vote = React.createClass({
     },
 
     handleChange: function(event, data) {
-    console.log("VALUE ================", data.value[0]);
+    // console.log("VALUE ================", data.value[0]);
     helpers.postBookWinner(data.value[0]);
     },
 
     handleSubmit: function(event) {
     event.preventDefault();
-    console.log("CLICKED Winner");
+    // console.log("CLICKED Winner");
     },
 
     render: function() {
