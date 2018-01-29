@@ -58,7 +58,23 @@ var vote = React.createClass({
           });
       }
 
+      var strip_html_tags = (function(){
+        "use strict";
+
+        return function(str){
+            if (!str || typeof str === 'undefined' || str === null){
+            return false;
+        }
+
+        var re = new RegExp('(<([^>]+)>)','ig');
+            return str.replace(re," ");;
+        };
+      })();
+
+console.log(strip_html_tags(book[1].description)); // "PHP Exercises"
+
       var titles = book.map((book) => {
+
         return( 
           <div className="ui unstackable items" key={book.id}>
             <div className="item">
@@ -89,7 +105,7 @@ var vote = React.createClass({
                   </div>
                 </div>
                 <div className="description">
-                  <p>{book.description}</p>
+                  <p>{strip_html_tags(book.description)}</p>
                 </div>
               </div>
             </div>
