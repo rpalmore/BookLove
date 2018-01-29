@@ -1,16 +1,12 @@
 
 var express = require("express");
 var passport = require('passport');
-
+var request = require('request');
 var bcrypt = require('bcryptjs');
-console.log("Routes loaded!");
-
-
 var path = require("path");
 var db = require("../models");
 var nodemailer = require("nodemailer");
 var bcrypt = require('bcryptjs');
-const goodreads = require('goodreads');
 var randomstring = require("randomstring");
 
 var db = require("../models");
@@ -267,28 +263,20 @@ module.exports = function(app) {
     });
   });
 
-  // GET USER SHELF FROM GOODREADS USING NPM PACKAGE
-  app.get("/shelf", function(req, res) {
-    let key = keys.grkey
-    let secret = keys.grsecret
+  // GET USER SHELF FROM GOODREADS USING NPM PACKAGE TESTING
 
-    let sample_user = 69348922;
-    let dump = json => {
+  app.get('/shelf', function(req, res, next) {
 
-    //looping through the books with .map in child vote//
-    const books = json.GoodreadsResponse.books[0].book;
-          
-    res.json(JSON.stringify(books));
+    let key = keys.grkey;
+    let secret = keys.grsecret;
+    let user = 69348922;
 
-    };
+    request({
+      uri: 'https://www.goodreads.com/review/list/' + user + '.xml?key=' + key + '&v=2&shelf=to-read'
+    }).pipe(res);
+  });
 
-    gr = goodreads.client({ 'key': key, 'secret': secret });
-        let shelfOptions = { 'userID': sample_user, 'shelf': 'to-read' }
-
-        let getShelf = gr.getSingleShelf(shelfOptions, dump);
-        return getShelf;
-
-    });
+  //www.goodreads.com/review/list/69348922.xml?key=GEaona3XZoaopMTFSjubmw&v=2&shelf=to-read
 
   //POST WINNING BOOK TO DATABASE//
   app.post("/api/book_winner", function(req, res) {

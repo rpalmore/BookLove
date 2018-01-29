@@ -81,7 +81,7 @@ var profile = React.createClass({
     return(
       <div style={divStyle}>
        <Image src={'/static'+this.state.photo_path} size='small' shape='circular' centered />
-         <h2 style={nameStyle}>{this.state.first_name + " " + this.state.last_name}</h2>
+         <h2 style={nameStyle}>{'Welcome back, ' + this.state.first_name + "!"}</h2>
           <div style={listStyle} className="container">
           
           {/* Conditional rendering based on member's association to book */}

@@ -7,6 +7,7 @@ var {Rating, Button} =  require("semantic-ui-react");
 var helpers = require("../utils/helpers");
 
 var vote = React.createClass({
+
     getInitialState: function() {
         return { 
             shelf: [],
@@ -16,7 +17,7 @@ var vote = React.createClass({
 
     loadServerData: function() {
         $.get("/shelf", function(result) {
-        var shelf = JSON.parse(result);
+        var shelf = result;
         this.setState({ shelf: shelf });
         }.bind(this))
     },
@@ -35,68 +36,87 @@ var vote = React.createClass({
     console.log("CLICKED Winner");
     },
 
-
     render: function() {
-        if (this.state.shelf.length === 0) {
-            return null
-        } else 
 
-        var titles = this.state.shelf.map(book => {
-             return( 
+      if (this.state.shelf.length === 0) {
+        return null
+      } else {
 
-            <div className="ui unstackable items" key={book.title}>
-                <div className="item">
-                    <div className="image">
-                        <a href={book.link[0]} target="_blank"> 
-                    <img src= {book.image_url} />
-                        </a>
+      var book = [];
+      let x = this.state.shelf.getElementsByTagName("book");
+        for (var i = 0; i < x.length; i++) {
+          book.push({
+            id: i,
+            title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
+            author: x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
+            avgRating: x[i].getElementsByTagName("average_rating")[0].childNodes[0].nodeValue,
+            pubYear: x[i].getElementsByTagName("publication_year")[0].childNodes[0].nodeValue,
+            description: x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue,
+            image: x[i].getElementsByTagName("image_url")[0].childNodes[0].nodeValue,
+            link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
+            pages: x[i].getElementsByTagName("num_pages")[0].childNodes[0].nodeValue,
+          });
+      }
 
-                    <div className="hearts">
-                        <Rating icon='heart' defaultRating={1} maxRating={5} />
-                    </div>
-                      <Button type="button" className="ui basic button"
-                        onSubmit={this.handleSubmit} 
-                        value={book.title} 
-                        onClick={this.handleChange}>
-                        <i className="empty heart icon"></i>Winner
-                    </Button>
-                    </div>
-                    <div className="content">
-                        <a className="header" href={book.link[0]} target="_blank"> {book.title}</a>
-                        <div className="extra">
-                            <p>Average rating: {book.average_rating}</p>
-                        </div>
-                        <div className="meta">
-                            <span>Author: 
-                                <a className="authorLink" href={book.authors[0].author[0].link } target="_blank"> { book.authors[0].author[0].name} </a>
-                            </span>
-                        </div>
-                        <div className="description">
-                            <p>{book.description}</p>
-                        </div>
-                    </div>
+      var titles = book.map((book) => {
+        return( 
+          <div className="ui unstackable items" key={book.id}>
+            <div className="item">
+              <div className="image">
+                <a href={book.link} target="_blank"> 
+                  <img src= {book.image} />
+                </a>
+                <div className="hearts">
+                  <Rating icon='heart' defaultRating={0} maxRating={5} />
                 </div>
-                 <div className="ui divider">
-                 </div>
+                <Button type="button" className="ui basic button"
+                  onSubmit={this.handleSubmit} 
+                  value={book.title} 
+                  onClick={this.handleChange}>
+                  <i className="empty heart icon"></i>Winner
+                </Button>
+              </div>
+              <div className="content">
+                <a className="header" href={book.link} target="_blank"> 
+                  {book.title}
+                </a>
+                <div className="extra">
+                  <p>Average rating: {book.avgRating}</p>
+                </div>
+                <div className="meta">
+                  <div className="author"> 
+                    {book.author} ({book.pubYear}) Pages: {book.pages}
+                  </div>
+                </div>
+                <div className="description">
+                  <p>{book.description}</p>
+                </div>
+              </div>
             </div>
+            <div className="ui divider">
+            </div>
+          </div>
 
             ) 
         })
-             return (
-                <div className="outerVote">
-                  <div className="register flow-text">
-                    <div className="directVote">
-                        <div className="flow-text center-align">Please rank each book between one and five hearts. Love wins.</div>
-                    </div>
-                    <div className="flow-text renderApiData"> 
-                        {titles} 
-                    </div> 
-                  </div>
+
+        return( 
+          <div className="voteLayout">
+            <div className="register flow-text">
+                <div className="flow-text center-align">
+                  Please rank each book between one and five hearts. Love wins.
                 </div>
-            )
-
-        }
-    });
-
+                <div className="ui divider">
+                </div>
+              <div className="flow-text renderApiData"> 
+                {titles} 
+              </div> 
+            </div>
+          </div>
+        )
+      }
+    }
+});
              
 module.exports = vote;
+

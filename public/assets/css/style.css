@@ -136,7 +136,7 @@ nav .brand-logo.center {
 }
 
 .register {
-	padding-top: 76px;
+	padding-top: 6%;
 	padding-bottom: 20px;
 	width:80%;
 	margin-left:10%;
@@ -159,6 +159,7 @@ nav .brand-logo.center {
 }
 
 .renderApiData {
+	margin-top: 6%;
 	line-height: 100%;
 	word-spacing: 8px;
 }
