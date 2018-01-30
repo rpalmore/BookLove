@@ -26,6 +26,16 @@ var taglines = [
 ];
 
 var selection ="";
+var timeoutID;
+function loadDelay() {
+  timeoutID = window.setTimeout(loadLogin, 1200);
+};
+
+function loadLogin() {
+  $('.backgroundImage').fadeOut(500);
+  $('.tag').hide();
+  $('.login').fadeIn(800);
+};
 
 $(document).ready(function(){
 
@@ -51,15 +61,9 @@ $(document).ready(function(){
 
         $('.tag').on('inAnimationEnd.tlt', function() {
           console.log("In animation ended");
-          setTimeout(loadLogin, 1500);
+          loadDelay();
         });
 	});
-
-    function loadLogin() {
-      $('.backgroundImage').fadeOut('slow');
-      $('.tag').hide();
-      $('.login').show();
-    }
 
 	function pickTagline() {
       selection = taglines[
@@ -100,7 +104,7 @@ var landingpage = React.createClass({
 	  	 	<div className='tag'></div>
 	  	 	<div className='tlt title'>Book Love</div>
 	  	 </div>
-	  		<img className="backgroundImage" src="/static/assets/imgs/screenshots/books.png" />	
+	  		<img className="backgroundImage" src="/static/assets/images/books.png" />	
 
           <Login />	
 

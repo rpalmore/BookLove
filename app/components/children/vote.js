@@ -1,9 +1,6 @@
 var React = require("react");
-
 var Link = require("react-router").Link;
-
 var {Rating, Button} =  require("semantic-ui-react");
-
 var helpers = require("../utils/helpers");
 
 var vote = React.createClass({
@@ -56,9 +53,11 @@ var vote = React.createClass({
             link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
             pages: x[i].getElementsByTagName("num_pages")[0].childNodes[0].nodeValue,
           });
+        // ONLY USE IN ADDITION WITH TOGGLE TO EXPAND TO FULL TEXT, OR LINK TO
+        // if (book[i].description.length > 1000) book[i].description = book[i].description.substring(0,1000) + " ... Read More"
       }
 
-      var strip_html_tags = (function(){
+      var stripHtmlTags = (function(){
         "use strict";
 
         return function(str){
@@ -70,8 +69,6 @@ var vote = React.createClass({
             return str.replace(re," ");;
         };
       })();
-
-console.log(strip_html_tags(book[1].description)); // "PHP Exercises"
 
       var titles = book.map((book) => {
 
@@ -93,7 +90,7 @@ console.log(strip_html_tags(book[1].description)); // "PHP Exercises"
                 </Button>
               </div>
               <div className="content">
-                <a className="header" href={book.link} target="_blank"> 
+                <a className="header effect" href={book.link} target="_blank"> 
                   {book.title}
                 </a>
                 <div className="extra">
@@ -105,7 +102,7 @@ console.log(strip_html_tags(book[1].description)); // "PHP Exercises"
                   </div>
                 </div>
                 <div className="description">
-                  <p>{strip_html_tags(book.description)}</p>
+                  <p>{stripHtmlTags(book.description)}</p>
                 </div>
               </div>
             </div>

@@ -50,7 +50,7 @@ var profile = React.createClass({
 
   componentWillMount() {
     axios.get("/request").then(function(response) {
-    console.log("axios results", response);
+    // console.log("axios results", response);
     var data = response.data;
     this.setState({ 
       photo_path: data.photo_path,
@@ -67,9 +67,9 @@ var profile = React.createClass({
     }.bind(this));
 
     axios.get("/book").then(function(response) {
-      console.log("axios book results", response);
+      // console.log("axios book results", response);
       var info = response.data;
-      console.log("INFO", info);
+      // console.log("INFO", info);
       this.setState({
         chapters: info.chapters,
         book_title: info.title,

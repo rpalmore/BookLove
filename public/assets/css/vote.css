@@ -1,0 +1,56 @@
+/*p {
+	color: red;
+}*/
+
+.flow-text {
+	margin-bottom: 20px;
+}
+
+.light-blue .darken-1 {
+	color: white;
+}
+
+.renderApiData {
+	margin-top: 6%;
+	line-height: 100%;
+	word-spacing: 8px;
+}
+
+.directVote {
+	text-align: center;
+}
+
+.hearts {
+	margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*.description {
+	font-size: 3rem;
+}*/
+
+/*************** || LINK UNDERLINE EFFECT || ***************/
+
+.effect {
+  color: #000000;
+  display: inline-block;
+  position: relative;
+}
+  
+.effect:before {
+  background-color: #000000;
+  content: '';
+  height: 1px;
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+  width: 100%;
+  }
+
+.effect:hover:before {
+  width: 0;
+}
+
+
