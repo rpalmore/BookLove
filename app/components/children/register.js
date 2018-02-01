@@ -21,7 +21,6 @@ var register = React.createClass({
   },
 
   handleChange: function(event) {
-  	console.log("INPUT CHANGED");
   	var newState = {};
   	newState[event.target.id] = event.target.value;
   	this.setState(newState);
@@ -29,7 +28,6 @@ var register = React.createClass({
 
   handleSubmit: function(event) {
   	event.preventDefault();
-  	console.log("CLICKED");
   	helpers.postNewMember(this.state.first_name, this.state.last_name, this.state.email_confirm, this.state.password_confirm, this.state.phone, this.state.goodreads_url, this.state.favorite_genre, this.state.favorite_book)
   },
 

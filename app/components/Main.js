@@ -56,9 +56,8 @@ var Main = React.createClass({
           </div>
         </nav>
        </div>
-
+       
         <Sidebar.Pushable as={Segment}>
-          
           <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
            <div style={divStyle}>
            <Image src={'/static'+this.state.photo_path} size='tiny' shape='circular' centered />
@@ -85,6 +84,7 @@ var Main = React.createClass({
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
+      
       </div>
 
         <footer>

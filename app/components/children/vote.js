@@ -2,21 +2,38 @@ var React = require("react");
 var Link = require("react-router").Link;
 var {Rating, Button} =  require("semantic-ui-react");
 var helpers = require("../utils/helpers");
+var axios = require("axios");
+
+var memberIdentification = [];
 
 var vote = React.createClass({
 
     getInitialState: function() {
         return { 
             shelf: [],
-            clickedBook: ''
+            clickedBook: '',
+            first_name: "",
+            members:[]
         };
     },
 
     loadServerData: function() {
-        $.get("/shelf", function(result) {
+      $.get("/shelf", function(result) {
         var shelf = result;
         this.setState({ shelf: shelf });
-        }.bind(this))
+      }.bind(this));
+
+      axios.get("/request").then(function(response) {
+        var data = response.data;
+        this.setState({ 
+          first_name: data.first_name,
+        });
+      }.bind(this));
+
+      axios.get("/members").then(function(memberList){
+        var members = memberList.data;
+        this.setState({ members: members });
+      }.bind(this));
     },
 
     componentDidMount: function() {
@@ -24,13 +41,16 @@ var vote = React.createClass({
     },
 
     handleChange: function(event, data) {
-    // console.log("VALUE ================", data.value[0]);
     helpers.postBookWinner(data.value[0]);
     },
 
     handleSubmit: function(event) {
     event.preventDefault();
-    // console.log("CLICKED Winner");
+    },
+
+    handleClick: function(event) {
+      event.preventDefault;
+      alert("Functionality coming!");
     },
 
     render: function() {
@@ -70,6 +90,18 @@ var vote = React.createClass({
         };
       })();
 
+      console.log(this.state.members);
+
+      var names = [];
+        let y = this.state.members;
+        for (var i = 0; i < y.length; i++) {
+          names.push(this.state.members[i].first_name);
+      };
+
+      const listItems = names.map((name) =>
+        <a onClick={this.handleClick} href={""}>{name + " | "}</a>
+      );
+
       var titles = book.map((book) => {
 
         return( 
@@ -94,12 +126,7 @@ var vote = React.createClass({
                   {book.title}
                 </a>
                 <div className="extra">
-                  <p>Average rating: {book.avgRating}</p>
-                </div>
-                <div className="meta">
-                  <div className="author"> 
-                    {book.author} ({book.pubYear}) Pages: {book.pages}
-                  </div>
+                  <p>Average rating: {book.avgRating} | {book.author} ({book.pubYear}) | Pages: {book.pages}</p>
                 </div>
                 <div className="description">
                   <p>{stripHtmlTags(book.description)}</p>
@@ -118,6 +145,10 @@ var vote = React.createClass({
             <div className="register flow-text">
                 <div className="flow-text center-align">
                   Please rank each book between one and five hearts. Love wins.
+                  <p>
+                    {' This is ' + this.state.first_name + '’s shelf. Available shelves: '}{listItems}
+                  </p>
+                    
                 </div>
                 <div className="ui divider">
                 </div>

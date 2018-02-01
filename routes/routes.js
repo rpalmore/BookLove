@@ -90,11 +90,12 @@ module.exports = function(app) {
   app.get("/request",
     require('connect-ensure-login').ensureLoggedIn('/login'),
     function(req,res){
-      console.log("Print user name: " + req.user.first_name);
+      // console.log("Print user name: " + req.user.first_name);
       res.json(req.user)
   });
 
-  app.get("/comment",require('connect-ensure-login').ensureLoggedIn('/login'),
+  app.get("/comment",
+    require('connect-ensure-login').ensureLoggedIn('/login'),
     function(req,res){
       console.log("current chapter" +req.user.chapter);
       db.Discussion.findAll({
@@ -119,12 +120,12 @@ module.exports = function(app) {
             image:data[key].Member.photo_path
           })
         }
-        console.log(comments);
         res.json(comments);
       })
     });
 
-  app.post("/api/comment",require('connect-ensure-login').ensureLoggedIn('/login'),
+  app.post("/api/comment",
+    require('connect-ensure-login').ensureLoggedIn('/login'),
     function(req,res){
       db.Discussion.create({
         chapter:req.body.chapter,
@@ -263,7 +264,7 @@ module.exports = function(app) {
     });
   });
 
-  // GET USER SHELF FROM GOODREADS USING NPM PACKAGE TESTING
+  // GET USER'S TO-READ SHELF USING GOODREADS API
 
   app.get('/shelf', function(req, res, next) {
 
@@ -278,7 +279,8 @@ module.exports = function(app) {
 
   //www.goodreads.com/review/list/69348922.xml?key=GEaona3XZoaopMTFSjubmw&v=2&shelf=to-read
 
-  //POST WINNING BOOK TO DATABASE//
+  // POST WINNING BOOK TO DATABASE
+  // TO DO: PULL PAGES INTO DATABASE (RATHER THAN MANUALLY ADD CHAPTERS)
   app.post("/api/book_winner", function(req, res) {
     var title = req.body.book;
     console.log("TITLE", title)
@@ -372,11 +374,29 @@ module.exports = function(app) {
             }
           });
         }
-      res.json(data);
+       res.json(data);
+      });
+     });
     });
-   });
   });
-});
+
+
+// EXAMPLE
+  //   app.get("/request",
+  //   require('connect-ensure-login').ensureLoggedIn('/login'),
+  //   function(req,res){
+  //     // console.log("Print user name: " + req.user.first_name);
+  //     res.json(req.user)
+  // });
+
+// TESTING NEW DATABASE QUERY
+  app.get("/members", function(req,res){
+      db.Member.findAll({
+        attributes: ['first_name']
+       }).then(function(data){
+        res.json(data);
+      });
+    });
 
   app.get('/logout', function(req, res){
     req.logout();
