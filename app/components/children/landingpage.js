@@ -25,10 +25,11 @@ var taglines = [
     'Just read it',
 ];
 
+
 var selection ="";
 var timeoutID;
 function loadDelay() {
-  timeoutID = window.setTimeout(loadLogin, 1200);
+  timeoutID = window.setTimeout(loadLogin, 2200);
 };
 
 function loadLogin() {
@@ -58,9 +59,10 @@ $(document).ready(function(){
     		  	shuffle: true
     		  }
         });
-
-        $('.tag').on('inAnimationEnd.tlt', function() {
-          console.log("In animation ended");
+        // IE9 stops here
+        // $('.tag').on('inAnimationEnd.tlt', function() {
+        $('.tag').on('inAnimationBegin.tlt', function() {
+          console.log("In animation for tag started!");
           loadDelay();
         });
 	});
