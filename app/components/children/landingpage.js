@@ -27,9 +27,15 @@ var taglines = [
 
 
 var selection ="";
+var cat = true;
 var timeoutID;
+
 function loadDelay() {
-  timeoutID = window.setTimeout(loadLogin, 2200);
+  timeoutID = window.setTimeout(loadLogin, 1200);
+};
+
+function loadAltDelay() {
+  timeoutID = window.setTimeout(loadLogin, 2500);
 };
 
 function loadLogin() {
@@ -39,6 +45,14 @@ function loadLogin() {
 };
 
 $(document).ready(function(){
+
+/*@cc_on
+  // conditional IE < 9 only fix
+  @if (@_jscript_version <= 9)
+  alert("This is IE9!");
+  cat = false;
+  @end
+@*/
 
     $('.register').hide();
     $('.login').hide();
@@ -59,18 +73,27 @@ $(document).ready(function(){
     		  	shuffle: true
     		  }
         });
-        // IE9 stops here
-        // $('.tag').on('inAnimationEnd.tlt', function() {
-        $('.tag').on('inAnimationBegin.tlt', function() {
+        // IE9 and older fix
+        if (cat = false) {
+          alert ("Hey!");
+          $('.tag').on('inAnimationBegin.tlt', function() {
           console.log("In animation for tag started!");
+          loadAltDelay();
+          console.log(cat);
+         });
+        } else {
+          $('.tag').on('inAnimationEnd.tlt', function() {
+          console.log("In animation for tag ended!");
           loadDelay();
-        });
+          console.log(cat);
+      });
+    }
 	});
 
 	function pickTagline() {
       selection = taglines[
         Math.floor(Math.random() * taglines.length)
-        ];
+      ];
     console.log("tagline", selection);
     $('.tag').append(selection);
 	}
