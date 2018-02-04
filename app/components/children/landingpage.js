@@ -31,7 +31,7 @@ var cat = true;
 var timeoutID;
 
 function loadDelay() {
-  timeoutID = window.setTimeout(loadLogin, 1200);
+  timeoutID = window.setTimeout(loadLogin, 900);
 };
 
 function loadAltDelay() {

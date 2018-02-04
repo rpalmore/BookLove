@@ -1,7 +1,7 @@
 var React = require("react");
 var Link = require("react-router").Link;
 var {Rating, Button} =  require("semantic-ui-react");
-var helpers = require("../utils/helpers");
+// var helpers = require("../utils/helpers");
 var axios = require("axios");
 
 var memberIdentification = [];
@@ -37,20 +37,20 @@ var vote = React.createClass({
     },
 
     componentDidMount: function() {
-        this.loadServerData();
+      this.loadServerData();
     },
 
     handleChange: function(event, data) {
-    helpers.postBookWinner(data.value[0]);
+      helpers.postBookWinner(data.value[0]);
     },
 
     handleSubmit: function(event) {
-    event.preventDefault();
+      event.preventDefault();
     },
 
-    handleClick: function(event) {
-      event.preventDefault;
+    handleClick: function() {
       alert("Functionality coming!");
+      // loadServerData() with new "user"
     },
 
     render: function() {
@@ -98,9 +98,11 @@ var vote = React.createClass({
           names.push(this.state.members[i].first_name);
       };
 
-      const listItems = names.map((name) =>
-        <a onClick={this.handleClick} href={""}>{name + " | "}</a>
+      const listItems = names.map((name, id) =>
+        <a onClick={this.handleClick} key={id}>{name + " | "}</a>
       );
+
+      console.log(names);
 
       var titles = book.map((book) => {
 

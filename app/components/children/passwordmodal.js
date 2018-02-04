@@ -31,17 +31,23 @@ var PasswordModal = React.createClass({
     event.preventDefault();
     console.log("CLICKED");
     if (this.state.email === 'teambooklove@gmail.com') {
-      alert("This feature is disabled. Your password is 'guest'. Please log in.");
+      $(".feedback").append().html(
+      'This feature is disabled for our guest user. Your password is "guest." Please log in.'
+      );
     } else {
-    helpers.postSendEmail(this.state.email)
+      helpers.postSendEmail(this.state.email);
+      $(".feedback").append().html(
+        "Thank you. Your new Book Love password has been emailed to "+ this.state.email + "."
+      );
     }
   },
 
   render: function() {
     return(
-      <Modal size='small' trigger={<a className="teal-text text-lighten-2 forgotPW">Forgot Password?</a>} closeIcon='close'>
-          <Header style={headerStyle} icon='mail outline' content='Forgot password? Please enter your email address' />
+      <Modal size='small' trigger={<a className="teal-text text-lighten-2 forgotPW">Forgot Password?</a>} closeIcon>
+          <Header style={headerStyle} icon='mail outline' content='Forgot password? Please enter your email address.' />
             <Modal.Content>
+             <p className="feedback"></p>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-container-modal">
                   <div className="row">

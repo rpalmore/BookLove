@@ -5,14 +5,11 @@ body {
 .wrapper {
   min-height: calc(100vh - 30px);
   background-color: rgb(128, 203, 196);
-/*  max-width: 1440px;
-  min-width: 320px;
-  margin: auto;*/
 }
 
 .title {
 	font-size: 58px;
-/*	font-family: 'Lobster', cursive;*/
+	font-family: 'Roboto Slab', serif;
 }
 
 .tlt {
@@ -64,7 +61,6 @@ body {
 	margin-bottom: 20px;
 }
 
-
 /*SIDE NAVIGATION STYLES*/
 
 /*Override Semantic UI styles for side nav*/
@@ -106,29 +102,15 @@ body {
 }
 
 nav .brand-logo.center {
-	/*font-family: 'Lobster', cursive;*/
 	padding-left: 15px;
 	padding-right: 15px;
 	font-size: 2.6rem;
 }
 
-/*.container {
-	margin-top: 80px;
-	width: 400px;
-	height: 700px;
-}*/
-
 .tabs .indicator {
 	background-color: #e0f2f1;
 	height: 60px;
 	opacity: 0.3;
-}
-
-.form-container {
-/*	padding-top: 136px;*/
-/*	padding-right: 40px;*/
-/*	padding-bottom: 10px;*/
-/*	padding-left: 40px;*/
 }
 
 .confirmation-tabs-btn {
@@ -185,12 +167,6 @@ footer {
 .copyright {
 	padding-right: 5px;
 }
-
-/*#footerGithub {
-  -moz-border-radius: 1.5em;
-  -webkit-border-radius: 1.5em;
-  border-radius: 1.5em;
-}*/
 
 i.icon:hover {
   background-color: #ffca28;

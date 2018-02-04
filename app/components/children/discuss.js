@@ -17,9 +17,6 @@ const text = {
 
 const commentDiv = {
   marginTop: 15,
-  // borderBottomColor: '#ffffff',
-  // borderBottomWidth: 1,
-  // borderBottomStyle: 'solid',
 };
 
 var listComment = [];
@@ -27,16 +24,16 @@ var listComment = [];
 var discuss = React.createClass({
 
 	getInitialState: function() {
-	  	return {
-        photo_path:"",
-	  		first_name: "",
-	  		last_name: "",
-	  		email: "",
-	  		current_book:"",
-	  		chapter: "",
-        newcomment:"",
-        comments:[]
-	  	};
+	  return {
+      photo_path:"",
+	  	first_name: "",
+	  	last_name: "",
+	  	email: "",
+	  	current_book:"",
+	  	chapter: "",
+      newcomment:"",
+      comments:[]
+	  };
 	},
 
   componentWillMount() {
@@ -79,10 +76,9 @@ var discuss = React.createClass({
   },
 
 	render: function() {
-    // console.log("print this" + JSON.stringify(this.state.comments));
     var listComment = this.state.comments.map((comment,i) => {
 
-    return <div style={commentDiv} key={i}><a onClick={this.handleClick}><img src={'/static'+comment.image} className="circle col s2" /></a><p style={text}>{comment.comment}</p> <p>{comment.sender} is talking about: {comment.book} | Chapter: {comment.chapter}</p><Divider clearing={true} /></div>
+    return <div style={commentDiv} key={i}><a onClick={this.handleClick}><img src={'/static'+comment.image} className="circle col s2" /></a><p style={text}>{comment.sender}: {comment.comment}</p> <p>{comment.book} | Chapter: {comment.chapter}</p><Divider clearing={true} /></div>
     });
 
 		return(

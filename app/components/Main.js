@@ -51,9 +51,11 @@ var Main = React.createClass({
        <div className="navbar-fixed">
         <nav>
          <div className="nav-wrapper">
-          <Button onClick={this.toggleVisibility}><i className="material-icons">menu</i></Button>
-            <a className="brand-logo center white-text">Book Love</a>
-          </div>
+          <Button onClick={this.toggleVisibility}>
+            <i className="material-icons">menu</i>
+          </Button>
+            <a className="brand-logo center white-text title">Book Love</a>
+         </div>
         </nav>
        </div>
        
