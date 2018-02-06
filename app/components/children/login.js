@@ -4,6 +4,8 @@ var helpers = require("../utils/helpers");
 
 var PasswordModal = require("./passwordmodal.js");
 
+var Faq = require("./faq.js");
+
 var login = React.createClass({
 
 	getInitialState: function() {
@@ -47,6 +49,9 @@ var login = React.createClass({
 						  <br />
 						  <br />
 						<PasswordModal /> | New user: <a className='signUp teal-text text-lighten-2'>Register!</a>
+						<p className="faqLink">
+						  <a className="faqLink teal-text text-lighten-2" href="/faq">About this site</a>
+						</p>
 					</center>
 
 			  </form>

@@ -25,14 +25,6 @@ const listStyle = {
   width: '70%',
 };
 
-const nameStyle = {
-  paddingBottom: 10,
-  paddingTop: 10,
-  fontSize: 22,
-  textAlign: 'center',
-  color: '#ffffff',
-};
-
 var profile = React.createClass({
 
   getInitialState: function() {
@@ -78,7 +70,7 @@ var profile = React.createClass({
     return(
       <div style={divStyle}>
        <Image src={'/static'+this.state.photo_path} size='small' shape='circular' centered />
-         <h2 style={nameStyle}>{'Welcome back, ' + this.state.first_name + "!"}</h2>
+         <p className='nameStyle'>{'Welcome back, ' + this.state.first_name + "!"}</p>
           <div style={listStyle} className="container">
           
           {/* Conditional rendering based on member's association to book */}

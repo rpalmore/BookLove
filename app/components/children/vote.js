@@ -1,7 +1,6 @@
 var React = require("react");
 var Link = require("react-router").Link;
 var {Rating, Button} =  require("semantic-ui-react");
-// var helpers = require("../utils/helpers");
 var axios = require("axios");
 
 var memberIdentification = [];

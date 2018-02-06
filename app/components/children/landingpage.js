@@ -27,7 +27,7 @@ var taglines = [
 
 
 var selection ="";
-var cat = true;
+var modernBrowser = true;
 var timeoutID;
 
 function loadDelay() {
@@ -49,13 +49,12 @@ $(document).ready(function(){
 /*@cc_on
   // conditional IE < 9 only fix
   @if (@_jscript_version <= 9)
-  alert("This is IE9!");
-  cat = false;
+  modernBrowser = false;
   @end
 @*/
 
-    $('.register').hide();
-    $('.login').hide();
+  $('.register').hide();
+  $('.login').hide();
 
 	$(function () {
       $('.tlt').textillate({ 
@@ -73,19 +72,19 @@ $(document).ready(function(){
     		  	shuffle: true
     		  }
         });
-        // IE9 and older fix
-        if (cat = false) {
-          alert ("Hey!");
+
+        if (modernBrowser == false) {
+          console.log("We're going to run loadAltDelay")
           $('.tag').on('inAnimationBegin.tlt', function() {
           console.log("In animation for tag started!");
           loadAltDelay();
-          console.log(cat);
+          console.log(modernBrowser);
          });
         } else {
           $('.tag').on('inAnimationEnd.tlt', function() {
           console.log("In animation for tag ended!");
           loadDelay();
-          console.log(cat);
+          console.log(modernBrowser);
       });
     }
 	});

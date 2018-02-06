@@ -76,6 +76,9 @@ var Main = React.createClass({
             <Menu.Item name='browse'>
               <Link onClick={this.toggleVisibility} to="/vote">Browse</Link>
             </Menu.Item>
+            <Menu.Item name='faq'>
+              <a onClick={this.toggleVisibility} href="/faq">FAQ</a>
+            </Menu.Item>
             <Menu.Item name='logout'>
               <a onClick={this.toggleVisibility} href="/logout">Log Out</a>
             </Menu.Item>

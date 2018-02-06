@@ -45,6 +45,11 @@ body {
 	padding-top: 132px;
 }
 
+.faqLink {
+	text-align: center;
+	padding-top: 10px;
+}
+
 .signUp {
 	cursor: pointer;
 }

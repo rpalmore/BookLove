@@ -264,19 +264,18 @@ module.exports = function(app) {
   });
 
   // GET USER'S TO-READ SHELF USING GOODREADS API
-
-  app.get('/shelf', function(req, res, next) {
-
-    let key = keys.grkey;
-    let secret = keys.grsecret;
-    let user = 69348922;
+  app.get('/shelf',
+    require('connect-ensure-login').ensureLoggedIn('/login'),
+    function(req, res, next) {
+      var grURL = req.user.goodreads_url;
+      let key = keys.grkey;
+      let secret = keys.grsecret;
+      let user = grURL.slice(36,44);
 
     request({
       uri: 'https://www.goodreads.com/review/list/' + user + '.xml?key=' + key + '&v=2&shelf=to-read'
     }).pipe(res);
   });
-
-  //www.goodreads.com/review/list/69348922.xml?key=GEaona3XZoaopMTFSjubmw&v=2&shelf=to-read
 
   // POST WINNING BOOK TO DATABASE
   // TO DO: PULL PAGES INTO DATABASE (RATHER THAN MANUALLY ADD CHAPTERS)
@@ -380,18 +379,9 @@ module.exports = function(app) {
   });
 
 
-// EXAMPLE
-  //   app.get("/request",
-  //   require('connect-ensure-login').ensureLoggedIn('/login'),
-  //   function(req,res){
-  //     // console.log("Print user name: " + req.user.first_name);
-  //     res.json(req.user)
-  // });
-
-// TESTING NEW DATABASE QUERY
   app.get("/members", function(req,res){
       db.Member.findAll({
-        attributes: ['first_name']
+        attributes: ['first_name', 'goodreads_url']
        }).then(function(data){
         res.json(data);
       });

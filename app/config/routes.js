@@ -26,7 +26,8 @@ var landingpage = require("../components/children/landingpage");
 var profile = require("../components/children/profile");
 var discuss = require("../components/children/discuss");
 var chaptermodal = require("../components/children/chaptermodal");
-var passwordmodal = require("../components/children/passwordmodal");	
+var passwordmodal = require("../components/children/passwordmodal");
+var faq = require("../components/children/faq");	
 
 // Export the Routes
 module.exports = (
@@ -37,6 +38,7 @@ module.exports = (
 		<Route path="/vote" component={vote} />
 		<Route path="/profile" component={profile} />
 		<Route path="/discuss" component={discuss} />
+		<Route path="/faq" component={faq} />
    </Route>
   </Router>
 );
