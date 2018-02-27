@@ -90,9 +90,9 @@ $(document).ready(function(){
 	});
 
 	function pickTagline() {
-      selection = taglines[
-        Math.floor(Math.random() * taglines.length)
-      ];
+    selection = taglines[
+      Math.floor(Math.random() * taglines.length)
+    ];
     console.log("tagline", selection);
     $('.tag').append(selection);
 	}

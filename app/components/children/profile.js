@@ -5,7 +5,7 @@ var axios = require("axios");
 
 var Link = require("react-router").Link;
 
-var helpers = require("../utils/helpers");
+// var helpers = require("../utils/helpers");
 
 var ChapterModal = require("./chaptermodal.js");
 

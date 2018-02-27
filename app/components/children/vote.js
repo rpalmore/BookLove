@@ -1,8 +1,8 @@
 var React = require("react");
 var Link = require("react-router").Link;
-var {Rating, Button} =  require("semantic-ui-react");
+var {Button, Icon} =  require("semantic-ui-react");
 var axios = require("axios");
-
+var helpers = require("../utils/helpers");
 var memberIdentification = [];
 
 var vote = React.createClass({
@@ -10,7 +10,6 @@ var vote = React.createClass({
     getInitialState: function() {
         return { 
             shelf: [],
-            clickedBook: '',
             first_name: "",
             members:[]
         };
@@ -40,7 +39,7 @@ var vote = React.createClass({
     },
 
     handleChange: function(event, data) {
-      helpers.postBookWinner(data.value[0]);
+      helpers.postBookWinner(data.value);
     },
 
     handleSubmit: function(event) {
@@ -60,7 +59,18 @@ var vote = React.createClass({
 
       var book = [];
       let x = this.state.shelf.getElementsByTagName("book");
+      let z = this.state.shelf.getElementsByTagName("publication_year");
+      // TRY: using variable rather than just one tag name
+      console.log("Z", z);
+      console.log("Z length", z.length);//returns 8
+      for (var i = 0; i < z.length; i++) {
+        console.log("Z values", z[i].childNodes);
+        if (z[i].childNodes.length === 0) {
+          console.log("Banana!");//returns one time
+        }
+      }
         for (var i = 0; i < x.length; i++) {
+          if (z[i].childNodes.length != 0) {//this code will remove the book totally
           book.push({
             id: i,
             title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
@@ -72,9 +82,18 @@ var vote = React.createClass({
             link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
             pages: x[i].getElementsByTagName("num_pages")[0].childNodes[0].nodeValue,
           });
+        } else {
+          console.log("More bananas!!");
+        }
+      }
+      
+        // } else {
+        //   book.push({
+        //     pages: "N/A"
+        //   })
         // ONLY USE IN ADDITION WITH TOGGLE TO EXPAND TO FULL TEXT, OR LINK TO
         // if (book[i].description.length > 1000) book[i].description = book[i].description.substring(0,1000) + " ... Read More"
-      }
+      
 
       var stripHtmlTags = (function(){
         "use strict";
@@ -95,7 +114,9 @@ var vote = React.createClass({
         let y = this.state.members;
         for (var i = 0; i < y.length; i++) {
           names.push(this.state.members[i].first_name);
-      };
+        };
+
+      // names.pop(this.state.first_name);
 
       const listItems = names.map((name, id) =>
         <a onClick={this.handleClick} key={id}>{name + " | "}</a>
@@ -112,14 +133,20 @@ var vote = React.createClass({
                 <a href={book.link} target="_blank"> 
                   <img src= {book.image} />
                 </a>
-                <div className="hearts">
-                  <Rating icon='heart' defaultRating={0} maxRating={5} />
-                </div>
-                <Button type="button" className="ui basic button"
+                {/*<Button animated='vertical'
                   onSubmit={this.handleSubmit} 
                   value={book.title} 
                   onClick={this.handleChange}>
-                  <i className="empty heart icon"></i>Winner
+                    <Button.Content hidden>Select</Button.Content>
+                    <Button.Content visible>
+                      <Icon name='shop' />
+                    </Button.Content>
+                </Button>*/}
+                <Button className="select"
+                  onSubmit={this.handleSubmit} 
+                  value={book.title} 
+                  onClick={this.handleChange}>
+                  Select
                 </Button>
               </div>
               <div className="content">
@@ -145,9 +172,9 @@ var vote = React.createClass({
           <div className="voteLayout">
             <div className="register flow-text">
                 <div className="flow-text center-align">
-                  Please rank each book between one and five hearts. Love wins.
+                  Browse a shelf to find your next book.
                   <p>
-                    {' This is ' + this.state.first_name + '’s shelf. Available shelves: '}{listItems}
+                    {' There are ' + x.length + ' books on '+ this.state.first_name + '’s shelf. Available shelves: '}{listItems}
                   </p>
                     
                 </div>

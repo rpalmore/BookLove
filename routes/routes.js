@@ -44,7 +44,6 @@ module.exports = function(app) {
           email:req.body.email
         }
       }).then(function(data){
-        console.log(data);
           if(data){
             var member_id = data.dataValues.id;
               db.Member.update({
@@ -267,9 +266,9 @@ module.exports = function(app) {
   app.get('/shelf',
     require('connect-ensure-login').ensureLoggedIn('/login'),
     function(req, res, next) {
-      var grURL = req.user.goodreads_url;
       let key = keys.grkey;
       let secret = keys.grsecret;
+      var grURL = req.user.goodreads_url;
       let user = grURL.slice(36,44);
 
     request({
@@ -294,6 +293,7 @@ module.exports = function(app) {
           title:title,
           chapters:10
         }).then(function(data){
+        console.log("THIS IS WHERE WE BREAK");
         res.json(data);
         })
       }else{
@@ -303,8 +303,9 @@ module.exports = function(app) {
       
 
   app.post("/api/updateCurrentbook", function(req,res){
+    console.log("Did we make it here???");
     var id=req.body.id;
-    console.log("id is" + id);
+    console.log("id is " + id);
     db.Member.update({
       current_book:id
     },{ 

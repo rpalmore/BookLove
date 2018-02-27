@@ -66,6 +66,17 @@ body {
 	margin-bottom: 20px;
 }
 
+.image {
+	text-align: center;
+}
+
+.ui.button.select {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	display: block;
+	margin: 3px auto;
+}
+
 /*SIDE NAVIGATION STYLES*/
 
 /*Override Semantic UI styles for side nav*/
@@ -153,11 +164,6 @@ nav .brand-logo.center {
 
 .directVote {
 	text-align: center;
-}
-
-.hearts {
-	margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 /*FOOTER STYLES*/

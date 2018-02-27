@@ -46,7 +46,6 @@ module.exports = function(app) {
 
 //Serializes user as their UserID
   passport.serializeUser(function(user, done){
-    console.log("PASSPORT SERIALIZE USER: ", user);
     done(null, user.id)
   });
 
@@ -58,7 +57,6 @@ module.exports = function(app) {
       }
     },{include:[{model:db.Book}]
     }).then(function (user) {
-      console.log("PASSPORT USER NAME: ", user.first_name);
       if (user == null) {
         done(new Error('Wrong user id.'))
       }      
