@@ -270,6 +270,7 @@ module.exports = function(app) {
       let secret = keys.grsecret;
       var grURL = req.user.goodreads_url;
       let user = grURL.slice(36,44);
+      // Will need different way to parse as some users have shorter IDs: 597461
 
     request({
       uri: 'https://www.goodreads.com/review/list/' + user + '.xml?key=' + key + '&v=2&shelf=to-read'
@@ -293,7 +294,6 @@ module.exports = function(app) {
           title:title,
           chapters:10
         }).then(function(data){
-        console.log("THIS IS WHERE WE BREAK");
         res.json(data);
         })
       }else{
@@ -303,7 +303,6 @@ module.exports = function(app) {
       
 
   app.post("/api/updateCurrentbook", function(req,res){
-    console.log("Did we make it here???");
     var id=req.body.id;
     console.log("id is " + id);
     db.Member.update({

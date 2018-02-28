@@ -33,7 +33,6 @@ var Main = React.createClass({
 
   componentWillMount() {
     axios.get("/request").then(function(response) {
-    // console.log("axios results", response);
     var data = response.data;
     this.setState({ 
       first_name: data.first_name,

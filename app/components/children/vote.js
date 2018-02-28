@@ -44,6 +44,7 @@ var vote = React.createClass({
 
     handleSubmit: function(event) {
       event.preventDefault();
+      // if user is already reading a book, add a modal here that asks whether or not they want to override their current selection if they click "select" while reading a book. Or, tell them to update their status first.
     },
 
     handleClick: function() {
@@ -55,22 +56,30 @@ var vote = React.createClass({
 
       if (this.state.shelf.length === 0) {
         return null
+        // HOW TO BETTER HANDLE THIS IF NO DATA? RETURN MESSAGE TO USER
       } else {
 
       var book = [];
       let x = this.state.shelf.getElementsByTagName("book");
+      let n = this.state.shelf.getElementsByTagName("num_pages");
       let z = this.state.shelf.getElementsByTagName("publication_year");
-      // TRY: using variable rather than just one tag name
-      console.log("Z", z);
-      console.log("Z length", z.length);//returns 8
+
+      // LOG MISSING DATA FOR 2 TAGS THAT ARE NOT CONSISTENT
       for (var i = 0; i < z.length; i++) {
-        console.log("Z values", z[i].childNodes);
         if (z[i].childNodes.length === 0) {
-          console.log("Banana!");//returns one time
+          console.log("PUB YEAR missing for: " + x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue);
+        } 
+      }
+
+      for (var i = 0; i < n.length; i++) {
+      if (n[i].childNodes.length === 0) {
+          console.log("NUM PAGES missing for: " + x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue);
         }
       }
+
+        // HANDLE MISSING DATA IN PARSE LOOP
         for (var i = 0; i < x.length; i++) {
-          if (z[i].childNodes.length != 0) {//this code will remove the book totally
+          if (z[i].childNodes.length && n[i].childNodes.length !=0) {
           book.push({
             id: i,
             title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
@@ -82,15 +91,46 @@ var vote = React.createClass({
             link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
             pages: x[i].getElementsByTagName("num_pages")[0].childNodes[0].nodeValue,
           });
-        } else {
-          console.log("More bananas!!");
+        } else if (z[i].childNodes.length === 0 && n[i].childNodes.length !=0) {
+          book.push({
+            id: i,
+            title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
+            author: x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
+            avgRating: x[i].getElementsByTagName("average_rating")[0].childNodes[0].nodeValue,
+            pubYear: 'N/A',
+            description: x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue,
+            image: x[i].getElementsByTagName("image_url")[0].childNodes[0].nodeValue,
+            link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
+            pages: x[i].getElementsByTagName("num_pages")[0].childNodes[0].nodeValue,
+          });
+        } else if (n[i].childNodes.length === 0 && z[i].childNodes.length !=0) {
+          book.push({
+            id: i,
+            title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
+            author: x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
+            avgRating: x[i].getElementsByTagName("average_rating")[0].childNodes[0].nodeValue,
+            pubYear: x[i].getElementsByTagName("publication_year")[0].childNodes[0].nodeValue,
+            description: x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue,
+            image: x[i].getElementsByTagName("image_url")[0].childNodes[0].nodeValue,
+            link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
+            pages: 'N/A'
+          });
+        } else if (n[i].childNodes.length === 0 && z[i].childNodes.length === 0) {
+          book.push({
+            id: i,
+            title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
+            author: x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
+            avgRating: x[i].getElementsByTagName("average_rating")[0].childNodes[0].nodeValue,
+            pubYear: 'N/A',
+            description: x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue,
+            image: x[i].getElementsByTagName("image_url")[0].childNodes[0].nodeValue,
+            link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
+            pages: 'N/A'
+          });
         }
       }
       
-        // } else {
-        //   book.push({
-        //     pages: "N/A"
-        //   })
+
         // ONLY USE IN ADDITION WITH TOGGLE TO EXPAND TO FULL TEXT, OR LINK TO
         // if (book[i].description.length > 1000) book[i].description = book[i].description.substring(0,1000) + " ... Read More"
       
