@@ -5,6 +5,8 @@ var axios = require("axios");
 var helpers = require("../utils/helpers");
 var memberIdentification = [];
 
+var listItems = [];
+
 var vote = React.createClass({
 
     getInitialState: function() {
@@ -47,9 +49,13 @@ var vote = React.createClass({
       // if user is already reading a book, add a modal here that asks whether or not they want to override their current selection if they click "select" while reading a book. Or, tell them to update their status first.
     },
 
-    handleClick: function() {
-      alert("Functionality coming!");
-      // loadServerData() with new "user"
+    handleClick: function(event) {
+      var id = event.id;
+      this.setState({ first_name: event.name });
+      $.get("/shelf/"+id, function(result) {
+        var shelf = result;
+        this.setState({ shelf: shelf });
+      }.bind(this));
     },
 
     render: function() {
@@ -63,6 +69,7 @@ var vote = React.createClass({
       let x = this.state.shelf.getElementsByTagName("book");
       let n = this.state.shelf.getElementsByTagName("num_pages");
       let z = this.state.shelf.getElementsByTagName("publication_year");
+      let d = this.state.shelf.getElementsByTagName("description");
 
       // LOG MISSING DATA FOR 2 TAGS THAT ARE NOT CONSISTENT
       for (var i = 0; i < z.length; i++) {
@@ -79,7 +86,7 @@ var vote = React.createClass({
 
         // HANDLE MISSING DATA IN PARSE LOOP
         for (var i = 0; i < x.length; i++) {
-          if (z[i].childNodes.length && n[i].childNodes.length !=0) {
+          if (z[i].childNodes.length && n[i].childNodes.length !=0 && d[i].childNodes.length !=0) {
           book.push({
             id: i,
             title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
@@ -91,7 +98,7 @@ var vote = React.createClass({
             link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
             pages: x[i].getElementsByTagName("num_pages")[0].childNodes[0].nodeValue,
           });
-        } else if (z[i].childNodes.length === 0 && n[i].childNodes.length !=0) {
+        } else if (z[i].childNodes.length === 0 && n[i].childNodes.length !=0 && d[i].childNodes.length !=0) {
           book.push({
             id: i,
             title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
@@ -103,7 +110,7 @@ var vote = React.createClass({
             link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
             pages: x[i].getElementsByTagName("num_pages")[0].childNodes[0].nodeValue,
           });
-        } else if (n[i].childNodes.length === 0 && z[i].childNodes.length !=0) {
+        } else if (n[i].childNodes.length === 0 && z[i].childNodes.length !=0 && d[i].childNodes.length !=0) {
           book.push({
             id: i,
             title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
@@ -115,7 +122,7 @@ var vote = React.createClass({
             link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
             pages: 'N/A'
           });
-        } else if (n[i].childNodes.length === 0 && z[i].childNodes.length === 0) {
+        } else if (n[i].childNodes.length === 0 && z[i].childNodes.length === 0 && d[i].childNodes.length !=0) {
           book.push({
             id: i,
             title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
@@ -123,6 +130,18 @@ var vote = React.createClass({
             avgRating: x[i].getElementsByTagName("average_rating")[0].childNodes[0].nodeValue,
             pubYear: 'N/A',
             description: x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue,
+            image: x[i].getElementsByTagName("image_url")[0].childNodes[0].nodeValue,
+            link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
+            pages: 'N/A'
+          });
+        } else if (d[i].childNodes.length === 0 && z[i].childNodes.length === 0 && n[i].childNodes.length === 0) {
+          book.push({
+            id: i,
+            title: x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue,
+            author: x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue,
+            avgRating: x[i].getElementsByTagName("average_rating")[0].childNodes[0].nodeValue,
+            pubYear: 'N/A',
+            description: 'N/A',
             image: x[i].getElementsByTagName("image_url")[0].childNodes[0].nodeValue,
             link: x[i].getElementsByTagName("link")[0].childNodes[0].nodeValue,
             pages: 'N/A'
@@ -130,11 +149,10 @@ var vote = React.createClass({
         }
       }
       
-
         // ONLY USE IN ADDITION WITH TOGGLE TO EXPAND TO FULL TEXT, OR LINK TO
         // if (book[i].description.length > 1000) book[i].description = book[i].description.substring(0,1000) + " ... Read More"
       
-
+      // STRIP HTML TAGS FROM XML DATA
       var stripHtmlTags = (function(){
         "use strict";
 
@@ -148,21 +166,24 @@ var vote = React.createClass({
         };
       })();
 
-      console.log(this.state.members);
+      // console.log('MEMBERS', this.state.members);
 
       var names = [];
         let y = this.state.members;
         for (var i = 0; i < y.length; i++) {
-          names.push(this.state.members[i].first_name);
+          names.push({name: this.state.members[i].first_name, id: this.state.members[i].id});
         };
 
-      // names.pop(this.state.first_name);
+      // console.log('NAMES', names);
+      // console.log('IDS???', names[0].id);//returns 1
+      // console.log('TEST', this.state.members[0].id);//returns 1
 
-      const listItems = names.map((name, id) =>
-        <a onClick={this.handleClick} key={id}>{name + " | "}</a>
+      listItems = names.map((name, id) =>
+        <a onClick={this.handleClick.bind(this, name)} key={id}>{name.name + " | "}</a>
       );
 
-      console.log(names);
+      console.log(listItems);
+      console.log(listItems[0].props.children);//returns 1
 
       var titles = book.map((book) => {
 

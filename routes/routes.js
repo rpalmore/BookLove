@@ -262,19 +262,44 @@ module.exports = function(app) {
     });
   });
 
-  // GET USER'S TO-READ SHELF USING GOODREADS API
+  // GET SIGNED IN USER'S TO-READ SHELF USING GOODREADS API
   app.get('/shelf',
     require('connect-ensure-login').ensureLoggedIn('/login'),
     function(req, res, next) {
       let key = keys.grkey;
       let secret = keys.grsecret;
+
+      // EXTRACT GOODREADS USER ID FROM URL
       var grURL = req.user.goodreads_url;
-      let user = grURL.slice(36,44);
-      // Will need different way to parse as some users have shorter IDs: 597461
+      var pattern = (/(?!\/)\d+(?=\-)/);
+      let user = grURL.match(pattern);
 
     request({
       uri: 'https://www.goodreads.com/review/list/' + user + '.xml?key=' + key + '&v=2&shelf=to-read'
     }).pipe(res);
+  });
+
+  // GET ANOTHER USER'S TO-READ SHELF USING GOODREADS API
+  app.get('/shelf/:id', function(req, res, next) {
+      let key = keys.grkey;
+      let secret = keys.grsecret;
+      db.Member.findOne({
+        where: {
+          id: req.params.id
+        },
+      }).then(function(data) {
+        console.log('DATA', data.dataValues.first_name);
+
+        // EXTRACT GOODREADS USER ID FROM URL
+        var grURL = data.dataValues.goodreads_url;
+        var pattern = (/(?!\/)\d+(?=\-)/);
+        let user = grURL.match(pattern);
+        console.log(user);
+
+    request({
+      uri: 'https://www.goodreads.com/review/list/' + user + '.xml?key=' + key + '&v=2&shelf=to-read'
+    }).pipe(res);
+   });
   });
 
   // POST WINNING BOOK TO DATABASE
@@ -381,7 +406,7 @@ module.exports = function(app) {
 
   app.get("/members", function(req,res){
       db.Member.findAll({
-        attributes: ['first_name', 'goodreads_url']
+        attributes: ['id', 'first_name', 'goodreads_url']
        }).then(function(data){
         res.json(data);
       });
