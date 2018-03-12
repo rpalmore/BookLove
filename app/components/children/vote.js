@@ -51,8 +51,8 @@ var vote = React.createClass({
 
     handleClick: function(event) {
       var id = event.id;
-      this.setState({ first_name: event.name });
       $.get("/shelf/"+id, function(result) {
+        this.setState({ first_name: event.name });
         var shelf = result;
         this.setState({ shelf: shelf });
       }.bind(this));
@@ -166,24 +166,15 @@ var vote = React.createClass({
         };
       })();
 
-      // console.log('MEMBERS', this.state.members);
-
       var names = [];
         let y = this.state.members;
         for (var i = 0; i < y.length; i++) {
           names.push({name: this.state.members[i].first_name, id: this.state.members[i].id});
         };
 
-      // console.log('NAMES', names);
-      // console.log('IDS???', names[0].id);//returns 1
-      // console.log('TEST', this.state.members[0].id);//returns 1
-
       listItems = names.map((name, id) =>
         <a onClick={this.handleClick.bind(this, name)} key={id}>{name.name + " | "}</a>
       );
-
-      console.log(listItems);
-      console.log(listItems[0].props.children);//returns 1
 
       var titles = book.map((book) => {
 
