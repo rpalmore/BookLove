@@ -92,7 +92,7 @@ var profile = React.createClass({
             <List.Item icon='heart' content={'My favorite book is ' +this.state.favorite_book} />
             <List.Item icon='thumbs up' content={'Favorite genre: ' +this.state.favorite_genre} />
             <List.Item icon='mail' content={this.state.email}/>
-            <List.Item icon='linkify' content={<a href={this.state.goodreads_url} target='_blank'>Check out my <b>Goodreads profile</b></a>}/>
+            <List.Item icon='linkify' content={<a href={this.state.goodreads_url} target='_blank'>Check out my Goodreads profile</a>}/>
           </List>
         </div>
       </div>

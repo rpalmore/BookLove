@@ -2,6 +2,20 @@ body {
 	/*background: #f5f5f5;*/
 }
 
+a {
+	color: #000;
+}
+
+a:hover {
+	color: #ee6e73;
+	cursor: pointer;
+}
+
+.divider {
+  background-color: rgb(77, 182, 172);
+  height: 3px;
+}
+
 .wrapper {
   min-height: calc(100vh - 30px);
   background-color: rgb(128, 203, 196);

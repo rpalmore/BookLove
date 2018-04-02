@@ -173,7 +173,10 @@ var vote = React.createClass({
         };
 
       listItems = names.map((name, id) =>
-        <a onClick={this.handleClick.bind(this, name)} key={id}>{name.name + " | "}</a>
+        <div className="names">
+          <a onClick={this.handleClick.bind(this, name)} key={id} className="effect">{name.name}
+          </a>
+        </div>
       );
 
       var titles = book.map((book) => {
@@ -213,7 +216,7 @@ var vote = React.createClass({
                 </div>
               </div>
             </div>
-            <div className="ui divider">
+            <div className="divider">
             </div>
           </div>
 
@@ -230,7 +233,7 @@ var vote = React.createClass({
                   </p>
                     
                 </div>
-                <div className="ui divider">
+                <div className="divider">
                 </div>
               <div className="flow-text renderApiData"> 
                 {titles} 

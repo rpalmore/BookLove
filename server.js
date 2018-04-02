@@ -2,6 +2,7 @@
 // Server.js - This file is the initial starting point for the Node/Express server.
 // =============================================================|
 var express = require("express");
+var compression = require("compression");
 
 // Sets up the Express App
 // =============================================================|
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(compression());
 
 // Determine our connection
 // =============================================================|
@@ -66,4 +68,4 @@ db.sequelize.sync({ force: false }).then(function() {
         console.log(`Server running http://localhost:${PORT}, Ctrl + c to stop`);
     });
 });
-
+console.log('NODE_ENV: '+ process.env.NODE_ENV);

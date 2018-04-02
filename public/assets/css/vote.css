@@ -53,4 +53,9 @@
   width: 0;
 }
 
+.names {
+  padding-left: 7px;
+  display: inline-block;
+}
+
 
