@@ -50,7 +50,7 @@ var login = React.createClass({
 						  <br />
 						<PasswordModal /> | New user: <a className='signUp teal-text text-lighten-2'>Register!</a>
 						<p className="faqLink">
-						  <a className="teal-text text-lighten-2" href="/faq">About this site</a>
+						  <a className="teal-text text-lighten-2" href="https://github.com/rpalmore/BookLove/blob/master/README.md" target="blank">About this site</a>
 						</p>
 					</center>
 

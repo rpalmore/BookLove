@@ -31,7 +31,7 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-// Useful resource: https://medium.com/@pandeysoni/nodemailer-service-in-node-js-using-smtp-and-xoauth2-7c638a39a37e
+// Useful resource: https://thepandeysoni.org/2016/07/12/user-authentication-using-passport.js-in-node.js/
 
 module.exports = function(app) {
 
