@@ -8,7 +8,6 @@ var db = require("../models");
 var nodemailer = require("nodemailer");
 var bcrypt = require('bcryptjs');
 var randomstring = require("randomstring");
-
 var db = require("../models");
 
 // DETERMINE CONNECTION
@@ -210,7 +209,7 @@ module.exports = function(app) {
   });
 
   // SEND MEMBER A NEW RANDOM PASSWORD
-  app.post('/api/send_email', function(req, res) {       
+  app.post('/api/send_email', function(req, res) {  
     var newPassword = randomstring.generate(8);
     console.log("Random string", newPassword);
     var email = req.body.email;
@@ -242,7 +241,7 @@ module.exports = function(app) {
               to: email,
               subject: "Your Book Love Password Request",
               text: "Here is your new Book Love password: " + newPassword,
-              html: "<body style='background-color: #e57373; text-align: center; padding-bottom: 15px; padding-top: 15px; font-family: Georgia; font-style: normal; font-size: 1.6rem;'><p style='color: #fffbe4; font-style: italic; font-size: 2.6rem;'>Book Love!</p><p style='color: #fffbe4;'>Here is your new Book Love password: </p><b>" + newPassword + "</b></p><p><a href='https://warm-sea-55516.herokuapp.com/' target='blank' style='color: #00CB88; font-size: 1.3rem; font-style: italic;'>Log in to Book Love</p></body>"
+              html: "<body style='background-color: #e57373; text-align: center; padding-bottom: 15px; padding-top: 15px; font-family: Georgia; font-style: normal; font-size: 1.6rem;'><p style='color: #fffbe4; font-style: italic; font-size: 2.6rem;'>Book Love!</p><p style='color: #fffbe4;'>Here is your new Book Love password: </p><b><input style='background-color: #fffbe4; color: #e57373; text-align:center' value="+ newPassword + "></b></p><p><a href='https://booklovelive.herokuapp.com/' target='blank' style='color: #000000; font-size: 1.3rem; font-style: italic;'>Log in to Book Love</p></body>"
             }
             transporter.sendMail(mailOptions, function(error, response){
               if (error){
